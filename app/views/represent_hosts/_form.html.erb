@@ -1,0 +1,39 @@
+<%= form_for(@represent_host) do |f| %>
+  <% if @represent_host.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@represent_host.errors.count, "error") %> prohibited this represent_host from being saved:</h2>
+
+      <ul>
+      <% @represent_host.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table>
+  <tr><div class="field">
+    <td width="10%"><%= f.label :first_name %></td>
+    <td width="25%"><%= f.text_field :first_name %></td>
+    <td width="65%"></td>
+  </tr></div>
+  <tr><div class="field">
+    <td><%= f.label :last_name %></td>
+    <td><%= f.text_field :last_name %></td>
+  </tr></div>
+  <tr><div class="field">
+    <td><%= f.label :middle_name %></td>
+    <td><%= f.text_field :middle_name %></td>
+  </tr></div>
+  <tr><div class="field">
+    <td><%= f.label :job %></td>
+    <td><%= f.text_field :job %></td>
+  </tr></div>
+  <tr><div class="field">
+    <td><%= f.label :organization %></td>
+    <td><%= f.text_field :organization %></td>
+  </tr></div>
+</table>
+  <div class="actions">
+    <%= f.submit(:value => "сохранить изменения" ) %>
+  </div>
+<% end %>

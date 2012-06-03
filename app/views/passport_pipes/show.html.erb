@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Passport:</b>
+  <%= @passport_pipe.passport_id %>
+</p>
+
+<p>
+  <b>Pipe:</b>
+  <%= @passport_pipe.pipe_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_passport_pipe_path(@passport_pipe) %> |
+<%= link_to 'Back', passport_pipes_path %>

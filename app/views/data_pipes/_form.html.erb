@@ -1,0 +1,25 @@
+<%= form_for(@data_pipe) do |f| %>
+  <% if @data_pipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@data_pipe.errors.count, "error") %> prohibited this data_pipe from being saved:</h2>
+
+      <ul>
+      <% @data_pipe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :number_product %><br />
+    <%= f.number_field :number_product %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.number_field :amount %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

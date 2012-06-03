@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First name:</b>
+  <%= @represent_tran.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @represent_tran.last_name %>
+</p>
+
+<p>
+  <b>Middle name:</b>
+  <%= @represent_tran.middle_name %>
+</p>
+
+<p>
+  <b>Job:</b>
+  <%= @represent_tran.job %>
+</p>
+
+<p>
+  <b>Organization:</b>
+  <%= @represent_tran.organization %>
+</p>
+
+
+<%= link_to 'Edit', edit_represent_tran_path(@represent_tran) %> |
+<%= link_to 'Back', represent_trans_path %>

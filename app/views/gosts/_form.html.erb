@@ -1,0 +1,21 @@
+<%= form_for(@gost) do |f| %>
+  <% if @gost.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@gost.errors.count, "error") %> prohibited this gost from being saved:</h2>
+
+      <ul>
+      <% @gost.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label 'название' %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit 'добавить' %>
+  </div>
+<% end %>

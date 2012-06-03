@@ -1,0 +1,29 @@
+<%= form_for(@installation_site) do |f| %>
+  <% if @installation_site.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@installation_site.errors.count, "error") %> prohibited this installation_site from being saved:</h2>
+
+      <ul>
+      <% @installation_site.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :object %><br />
+    <%= f.text_field :object %>
+  </div>
+  <div class="field">
+    <%= f.label :data %><br />
+    <%= f.datetime_select :data %>
+  </div>
+  <div class="field">
+    <%= f.label :joint %><br />
+    <%= f.text_field :joint %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

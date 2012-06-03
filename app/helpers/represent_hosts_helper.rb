@@ -1,0 +1,2 @@
+module RepresentHostsHelper
+end

@@ -1,0 +1,28 @@
+<h2>Изготовители</h2>
+
+<table>
+  <tr>
+    <th>название</th>
+    <th>адрес</th>
+    <th>телефон</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @manufacturs.each do |manufactur| %>
+  <tr>
+    <td><%= manufactur.name %></td>
+    <td><%= manufactur.address %></td>
+    <td><%= manufactur.phone %></td>
+    <td><%= link_to 'просмотреть', manufactur %></td>
+    <td><%= link_to 'изменить', edit_manufactur_path(manufactur) %></td>
+    <td><%= link_to 'удалить', manufactur, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'добавить', new_manufactur_path %>
+<%= link_to 'назад', guide_index_path %>

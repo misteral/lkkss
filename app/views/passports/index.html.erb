@@ -1,0 +1,23 @@
+<h1>Listing passports</h1>
+
+<table>
+  <tr>
+    <th>Link</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @passports.each do |passport| %>
+  <tr>
+    <td><%= passport.link %></td>
+    <td><%= link_to 'Show', passport %></td>
+    <td><%= link_to 'Edit', edit_passport_path(passport) %></td>
+    <td><%= link_to 'Destroy', passport, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Passport', new_passport_path %>

@@ -1,0 +1,25 @@
+<%= form_for(@passport_pipe) do |f| %>
+  <% if @passport_pipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@passport_pipe.errors.count, "error") %> prohibited this passport_pipe from being saved:</h2>
+
+      <ul>
+      <% @passport_pipe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :passport_id %><br />
+    <%= f.number_field :passport_id %>
+  </div>
+  <div class="field">
+    <%= f.label :pipe_id %><br />
+    <%= f.number_field :pipe_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

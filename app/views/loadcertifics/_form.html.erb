@@ -1,0 +1,13 @@
+<%= simple_form_for(@loadcertific) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, :label => "можно дополнительно ввести имя акта"%>
+  </div>
+    <p>
+      <%= f.file_field :certific %>
+    </p>
+  <div class="form-actions">
+    <%= f.button :submit, "загрузить акт" %>
+  </div>
+<% end %>

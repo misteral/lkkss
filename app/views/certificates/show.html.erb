@@ -1,0 +1,232 @@
+<p id="notice"><%= notice %></p>
+
+<% if !@certificate.name.include?("(") %>
+<table BORDER=2  CELLPADDING=5>
+  <tr>
+    <td width="30%"></td>
+    <td width="40%"><p align="center"><%= @certificate.name %></p></td>
+    <td width="30%"></td>
+  </tr>
+  <tr>
+    <td width="30%"></td>
+    <td width="40%"><p align="center">№  <%= @certificate.number %>  от <%= @certificate.date_issue%></p></td>
+    <td width="30%"></td>
+  </tr>
+  <tr>
+    <td width="30%"><p>Место проведения входного контроля труб</p></td>
+    <td width="40%"><p align="center"><%= InstallationSite.find(@certificate.installation_site_id).object %></p></td>
+    <td width="30%"><p>Трубы размером  <%= SizesPipe.find(@certificate.sizes_pipe_id).diameter_trunk %></p></td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td width="25%">Изготовлены по (ТУ, ГОСТ)</td>
+    <td width="25%"><p><%= Gost.find(@certificate.gost_id).name %></p></td>
+    <td width="25%"><p>Конструкция труб    <%= TypePipe.find(@certificate.type_pipe_id).name %></p></td>
+    <td width="25%"><p>Класс прочности    <%= SizesPipe.find(@certificate.sizes_pipe_id).strength_class %></p></td>
+  </tr>
+  <tr>
+    <td width="25%">Изоляционное покрытие по ТУ</td>
+    <td width="25%"><p align="left"><%= Ty.find(@certificate.ty_id).name %></p></td>
+    <td width="25%"><p>Завод изготовитель    </p></td>
+    <td width="25%"><p align="left"><%= Manufactur.find(@certificate.manufactur_id).name %></p></td>
+  </tr>
+</table>
+<table >
+  <tr  ROWSPAN="2">
+    <td width="2%" rowspan="2"><p align="center">№ п/п</p></td>
+    <td width="7%" rowspan="2"><p align="center">Присвоен. № трубы/ партии/ плавки</p></td>
+    <td width="7%" rowspan="2"><p align="center">№ сертиф.</p></td>
+    <td width="8%" rowspan="2"><p align="center">Дата отгрузки</p></td>
+    <td width="8%" rowspan="2"><p align="center">Дата нанисения изол.</p></td>
+    <td width="5%" rowspan="2"><p align="center">Фактич. диам. мм</p></td>
+    <td width="3%" rowspan="2"><p align="center">Овальность, мм</p></td>
+    <td width="3%" rowspan="2"><p align="center">Длина, м</p></td>
+    <td width="4%" rowspan="2"><p align="center">Толщина стенки, мм</p></td>
+    <td width="43%" colspan="6"><p align="center">Описание дефектов</p></td>
+    <td width="4%" rowspan="2"><p align="center">Ост. Маг. инд. мТс</p></td>
+    <td width="4%" rowspan="2"><p align="center">Отметка о годности</p></td>
+  </tr>
+  <tr>
+    <td><p align="center">Тип дефекта</p></td>
+    <td><p align="center">От марк. торца, м</p></td>
+    <td><p align="center">Длина, мм</p></td>
+    <td><p align="center">Ширина, мм</p></td>
+    <td><p align="center">Глубина, мм</p></td>
+    <td><p align="center">Ост. толщина, мм</p></td>
+  </tr>
+  <tr>
+    <% for @i in 1..17 %>
+        <td ><p align="center"><%= @i %></p></td>
+    <% end %>
+  </tr>
+  <% Result.find_all_by_certificate_id(@certificate.id).each do |rem|  %>
+    <tr>
+        <td width="2%"><p align="center"><%=  %></p></td>
+        <td width="7%"><p align="center"><%= Pipe.find(rem.pipe_id).notation%>/<br> <%= DataPipe.find(Pipe.find(rem.pipe_id).data_pipe_id).number_product %>/<br><%= %></p></td>
+        <td width="7%"><p align="center"><%= DataPipe.find(Pipe.find(rem.pipe_id).data_pipe_id).certific %></p></td>
+        <td width="8%"><p align="center"><%= rem.date_issue %></p></td>
+        <td width="8%"><p align="center"><%= rem.application_isolation%></p></td>
+        <td width="5%"><p align="center">марк.<br><%= rem.outside_diameter.split("/")[0] %><br>немарк.<br><%= rem.outside_diameter.split("/")[1] %></p></td>
+        <td width="3%"><p align="center"><br><%= rem.roundness.split("/")[0] %><br><br><%= rem.roundness.split("/")[1] %></p></td>
+        <td width="3%"><p align="center"><%= rem.length_all  %></p></td>
+        <td width="4%"><p align="center"><%= rem.wall_tickness.split("/")[0] %><br><%= rem.wall_tickness.split("/")[1] %><br><%= rem.wall_tickness.split("/")[2] %><br><%= rem.wall_tickness.split("/")[3] %></p></td>
+        <td width="13%"><p align="center"><%= rem.type_def %></p></td>
+        <td width="5%"><p align="center"><%= rem.from_mark_butt %></p></td>
+        <td width="5%"><p align="center"><%= rem.length %></p></td>
+        <td width="5%"><p align="center"><%= rem.width %></p></td>
+        <td width="7%"><p align="center"><%= rem.deep %></p></td>
+        <td width="7%"><p align="center"><%= rem.thickness %></p></td>
+        <td width="4%"><p align="center"><%= rem.magnet.split("/")[0] %><br><%= rem.magnet.split("/")[1] %><br><%= rem.magnet.split("/")[2] %><br><%= rem.magnet.split("/")[3] %></p></td>
+        <td width="4%"><p align="center"><%= rem.mark_date %></p></td>
+     </tr>
+  <% end %>
+</table>
+    Примечание: в ст.  6-17 записывают фактические результаты измерений.<br>
+    Используемые приборы и измерительный инструмент:<%= Instrumentation.find(@certificate.instrumentation_id).name %> <br>
+    Акт составлен на <% $list %>  лист., прилагаются копии сертификатов качества.<br>
+    Заключение<p align="center"> <%= Conclusion.find(@certificate.conclusion_id).output %></p>
+    <table>
+            <tr>
+              <td width="25%"><p>Контроль произведен в присутствии:</p></td>
+              <td width="25%"><p align="center"><%= RepresentHost.find(@certificate.represent_host_id).last_name %></p></td>
+              <td width="25%"><p align="center"><%= RepresentHost.find(@certificate.represent_host_id).job %></p></td>
+              <td width="14%"><p align="center"></p></td>
+              <td width="11%"><p align="right"><% $date1 %></p></td>
+            </tr>
+            <tr>
+              <td width="25%"><p>Провел контроль с выдачей заключения:</p></td>
+              <td width="25%"><p align="center"><%= Delegate.find(@certificate.delegate_id).last_name %></p></td>
+              <td width="25%"><p align="center"><%= Delegate.find(@certificate.delegate_id).level_nk %></p></td>
+              <td width="14%"><p align="center"></p></td>
+              <td width="11%"><p align="right"><% $date2 %></p></td>
+            </tr>
+            <tr>
+              <td width="25%"><p>С результатом ознакомлен, акт выдан:</p></td>
+              <td width="25%"><p align="center"><%= RepresentTran.find(@certificate.represent_trans_id).last_name %></p></td>
+              <td width="25%"><p align="center"><%= RepresentTran.find(@certificate.represent_trans_id).job %></p></td>
+              <td width="14%"><p align="center"></p></td>
+              <td width="11%"><p align="right"><% $date3 %></p></td>
+            </tr>
+    </table>
+
+<% else %>
+    <table BORDER=2  CELLPADDING=5>
+      <tr>
+        <td width="30%"></td>
+        <td width="40%"><p align="center"><%= @certificate.name %></p></td>
+        <td width="30%"></td>
+      </tr>
+      <tr>
+        <td width="30%"></td>
+        <td width="40%"><p align="center">№  <%= @certificate.number %>  от <%= @certificate.date_issue%></p></td>
+        <td width="30%"></td>
+      </tr>
+      <tr>
+        <td width="30%"><p>Место проведения входного контроля труб</p></td>
+        <td width="40%"><p align="center"><%= InstallationSite.find(@certificate.installation_site_id).object %></p></td>
+        <td width="30%"><p>Трубы размером  <%= SizesPipe.find(@certificate.sizes_pipe_id).diameter_trunk %></p></td>
+      </tr>
+    </table>
+    <table>
+      <tr>
+        <td width="25%">Изготовлены по (ТУ, ГОСТ)</td>
+        <td width="25%"><p><%= Gost.find(@certificate.gost_id).name %></p></td>
+        <td width="25%"><p>Конструкция труб    <%= TypePipe.find(@certificate.type_pipe_id).name %></p></td>
+        <td width="25%"><p>Класс прочности    <%= SizesPipe.find(@certificate.sizes_pipe_id).strength_class %></p></td>
+      </tr>
+      <tr>
+        <td width="25%">Изоляционное покрытие по ТУ</td>
+        <td width="25%"><p align="left"><%= Ty.find(@certificate.ty_id).name %></p></td>
+        <td width="25%"><p>Завод изготовитель    </p></td>
+        <td width="25%"><p align="left"><%= Manufactur.find(@certificate.manufactur_id).name %></p></td>
+      </tr>
+    </table>
+    <table >
+      <tr  ROWSPAN="2">
+        <td width="2%" rowspan="2"><p align="center">№ п/п</p></td>
+        <td width="7%" rowspan="2"><p align="center">Присвоен. № трубы/ партии/ плавки</p></td>
+        <td width="7%" rowspan="2"><p align="center">№ сертиф.</p></td>
+        <td width="8%" rowspan="2"><p align="center">Дата отгрузки</p></td>
+        <td width="8%" rowspan="2"><p align="center">Дата нанисения изол.</p></td>
+        <td width="5%" rowspan="2"><p align="center">Фактич. диам. мм</p></td>
+        <td width="3%" rowspan="2"><p align="center">Овальность, мм</p></td>
+        <td width="3%" rowspan="2"><p align="center">Длина, м</p></td>
+        <td width="4%" rowspan="2"><p align="center">Толщина стенки, мм</p></td>
+        <td width="43%" colspan="7"><p align="center">Описание дефектов</p></td>
+        <td width="4%" rowspan="2"><p align="center">Ост. Маг. инд. мТс</p></td>
+        <td width="4%" rowspan="2"><p align="center">Отметка о годности</p></td>
+      </tr>
+      <tr>
+        <td><p align="center">Тип дефекта</p></td>
+        <td><p align="center">От марк. торца, м</p></td>
+        <td><p align="center">От пр. шва м</p></td>
+        <td><p align="center">Длина, мм</p></td>
+        <td><p align="center">Ширина, мм</p></td>
+        <td><p align="center">Глубина, мм</p></td>
+        <td><p align="center">Ост. толщина, мм</p></td>
+      </tr>
+      <tr>
+        <% for @i in 1..18 %>
+            <td ><p align="center"><%= @i %></p></td>
+        <% end %>
+      </tr>
+      <% Result.find_all_by_certificate_id(@certificate.id).each do |rem|  %>
+        <tr>
+            <td width="2%"><p align="center"><%=  %></p></td>
+            <td width="7%"><p align="center"><%= Pipe.find(rem.pipe_id).notation%>/<br> <%= DataPipe.find(Pipe.find(rem.pipe_id).data_pipe_id).number_product %>/<br><%= %></p></td>
+            <td width="7%"><p align="center"><%= DataPipe.find(Pipe.find(rem.pipe_id).data_pipe_id).certific %></p></td>
+            <td width="8%"><p align="center"><%= rem.date_issue %></p></td>
+            <td width="8%"><p align="center"><%= rem.application_isolation%></p></td>
+            <td width="5%"><p align="center">марк.<br><%= rem.outside_diameter.split("/")[0] %><br>немарк.<br><%= rem.outside_diameter.split("/")[1] %></p></td>
+            <td width="3%"><p align="center"><br><%= rem.roundness.split("/")[0] %><br><br><%= rem.roundness.split("/")[1] %></p></td>
+            <td width="3%"><p align="center"><%= rem.length_all  %></p></td>
+            <td width="4%"><p align="center"><%= rem.wall_tickness.split("/")[0] %><br><%= rem.wall_tickness.split("/")[1] %><br><%= rem.wall_tickness.split("/")[2] %><br><%= rem.wall_tickness.split("/")[3] %></p></td>
+            <td width="13%"><p align="center"><%= rem.type_def %></p></td>
+            <td width="5%"><p align="center"><%= rem.from_mark_butt %></p></td>
+            <td width="5%"><p align="center"><%= rem.length %></p></td>
+            <td width="5%"><p align="center"><%= rem.from_right_seam %></p></td>
+            <td width="5%"><p align="center"><%= rem.width %></p></td>
+            <td width="7%"><p align="center"><%= rem.deep %></p></td>
+            <td width="7%"><p align="center"><%= rem.thickness %></p></td>
+            <td width="4%"><p align="center"><%= rem.magnet.split("/")[0] %><br><%= rem.magnet.split("/")[1] %><br><%= rem.magnet.split("/")[2] %><br><%= rem.magnet.split("/")[3] %></p></td>
+            <td width="4%"><p align="center"><%= rem.mark_date %></p></td>
+         </tr>
+      <% end %>
+    </table>
+    Примечание: в ст.  6-17 записывают фактические результаты измерений.<br>
+    Используемые приборы и измерительный инструмент:<%= Instrumentation.find(@certificate.instrumentation_id).name %> <br>
+    Акт составлен на <% $list %>  лист., прилагаются копии сертификатов качества.<br>
+    Заключение<p align="center"> <%= Conclusion.find(@certificate.conclusion_id).output %></p>
+    <table>
+            <tr>
+              <td width="25%"><p>Контроль произведен в присутствии:</p></td>
+              <td width="25%"><p align="center"><%= RepresentHost.find(@certificate.represent_host_id).last_name %></p></td>
+              <td width="25%"><p align="center"><%= RepresentHost.find(@certificate.represent_host_id).job %></p></td>
+              <td width="14%"><p align="center"></p></td>
+              <td width="11%"><p align="right"><% $date1 %></p></td>
+            </tr>
+            <tr>
+              <td width="25%"><p>Провел контроль с выдачей заключения:</p></td>
+              <td width="25%"><p align="center"><%= Delegate.find(@certificate.delegate_id).last_name %></p></td>
+              <td width="25%"><p align="center"><%= Delegate.find(@certificate.delegate_id).job %></p></td>
+              <td width="14%"><p align="center"></p></td>
+              <td width="11%"><p align="right"><% $date2 %></p></td>
+            </tr>
+            <tr>
+              <td width="25%"><p>С результатом ознакомлен, акт выдан:</p></td>
+              <td width="25%"><p align="center"><%= RepresentTran.find(@certificate.represent_trans_id).last_name %></p></td>
+              <td width="25%"><p align="center"><%= RepresentTran.find(@certificate.represent_trans_id).job %></p></td>
+              <td width="14%"><p align="center"></p></td>
+              <td width="11%"><p align="right"><% $date3 %></p></td>
+            </tr>
+    </table>
+<% end  %>
+<br>
+
+<% $fed=1000 %>
+
+<%= button_to 'произвести расчет затрат', :action => 'cost', :controller => 'certificates' %>
+<%= link_to '', edit_certificate_path(@certificate) %> |
+<%= link_to 'Back', certificates_path %>
+

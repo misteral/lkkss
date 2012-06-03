@@ -1,0 +1,56 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Bending angle:</b>
+  <%= @sizes_pipe.bending_angle %>
+</p>
+
+<p>
+  <b>Diameter trunk:</b>
+  <%= @sizes_pipe.diameter_trunk %>
+</p>
+
+<p>
+  <b>Wall tickness:</b>
+  <%= @sizes_pipe.wall_tickness %>
+</p>
+
+<p>
+  <b>Strength class:</b>
+  <%= @sizes_pipe.strength_class %>
+</p>
+
+<p>
+  <b>Pressure:</b>
+  <%= @sizes_pipe.pressure %>
+</p>
+
+<p>
+  <b>Service factor:</b>
+  <%= @sizes_pipe.service_factor %>
+</p>
+
+<p>
+  <b>Material:</b>
+  <%= @sizes_pipe.material %>
+</p>
+
+<p>
+  <b>Climatic:</b>
+  <%= @sizes_pipe.climatic %>
+</p>
+
+<p>
+  <b>Diameter bore:</b>
+  <%= @sizes_pipe.diameter_bore %>
+</p>
+
+<p>
+  <b>Document:</b>
+  <%= Document.find( @sizes_pipe.document_id ).name %>
+  
+</p>
+
+
+<%= link_to 'Edit', edit_sizes_pipe_path(@sizes_pipe) %> |
+<%= link_to 'Back', sizes_pipes_path %>

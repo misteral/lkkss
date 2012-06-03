@@ -1,0 +1,27 @@
+<h3>справочник принимающей стороны</h3>
+
+<table>
+  <tr>
+    <th>ФИО</th>
+    <th>Job</th>
+    <th>Organization</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @represent_hosts.each do |represent_host| %>
+  <tr>
+    <td><%= represent_host.last_name %></td>
+    <td><%= represent_host.job %></td>
+    <td><%= represent_host.organization %></td>
+    <td><%= link_to 'просмотр', represent_host %></td>
+    <td><%= link_to 'редактировать', edit_represent_host_path(represent_host) %></td>
+    <td><%= link_to 'удалить', represent_host, confirm: 'вы уверены?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'добавить', new_represent_host_path %>

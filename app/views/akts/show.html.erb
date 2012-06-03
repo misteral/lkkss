@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Data akt:</b>
+  <%= @akt.data_akt %>
+</p>
+
+<p>
+  <b>Num trub oip:</b>
+  <%= @akt.num_trub_oip %>
+</p>
+
+<p>
+  <b>Num trub:</b>
+  <%= @akt.num_trub %>
+</p>
+
+<p>
+  <b>Konstr:</b>
+  <%= @akt.konstr_id %>
+</p>
+
+<p>
+  <b>Zavod:</b>
+  <%= @akt.zavod_id %>
+</p>
+
+<p>
+  <b>Tipdef:</b>
+  <%= @akt.tipdef_id %>
+</p>
+
+<p>
+  <b>Ntrub:</b>
+  <%= @akt.ntrub_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_akt_path(@akt) %> |
+<%= link_to 'Back', akts_path %>

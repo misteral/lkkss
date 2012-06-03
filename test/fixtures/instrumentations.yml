@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  mark: MyString
+  date_verification: 2012-02-25 16:23:07
+  certificate: 1
+
+two:
+  name: MyString
+  mark: MyString
+  date_verification: 2012-02-25 16:23:07
+  certificate: 1

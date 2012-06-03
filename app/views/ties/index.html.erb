@@ -1,0 +1,23 @@
+<h1>Listing ties</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ties.each do |ty| %>
+  <tr>
+    <td><%= ty.name %></td>
+    <td><%= link_to 'Show', ty %></td>
+    <td><%= link_to 'Edit', edit_ty_path(ty) %></td>
+    <td><%= link_to 'Destroy', ty, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Ty', new_ty_path %>

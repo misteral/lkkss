@@ -1,0 +1,25 @@
+<h1>Listing data_pipes</h1>
+
+<table>
+  <tr>
+    <th>Number product</th>
+    <th>Amount</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @data_pipes.each do |data_pipe| %>
+  <tr>
+    <td><%= data_pipe.number_product %></td>
+    <td><%= data_pipe.amount %></td>
+    <td><%= link_to 'Show', data_pipe %></td>
+    <td><%= link_to 'Edit', edit_data_pipe_path(data_pipe) %></td>
+    <td><%= link_to 'Destroy', data_pipe, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Data pipe', new_data_pipe_path %>

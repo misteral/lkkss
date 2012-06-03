@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>назвение:</b>
+  <%= @gost.name %>
+</p>
+
+
+<%= link_to 'изменить', edit_gost_path(@gost) %> |
+<%= link_to 'назад', gosts_path %>

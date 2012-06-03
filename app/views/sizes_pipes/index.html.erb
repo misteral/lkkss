@@ -1,0 +1,41 @@
+<h1>Listing sizes_pipes</h1>
+
+<table>
+  <tr>
+    <th>Bending angle</th>
+    <th>Diameter trunk</th>
+    <th>Wall tickness</th>
+    <th>Strength class</th>
+    <th>Pressure</th>
+    <th>Service factor</th>
+    <th>Material</th>
+    <th>Climatic</th>
+    <th>Diameter bore</th>
+    <th>Document</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sizes_pipes.each do |sizes_pipe| %>
+  <tr>
+    <td><%= sizes_pipe.bending_angle %></td>
+    <td><%= sizes_pipe.diameter_trunk %></td>
+    <td><%= sizes_pipe.wall_tickness %></td>
+    <td><%= sizes_pipe.strength_class %></td>
+    <td><%= sizes_pipe.pressure %></td>
+    <td><%= sizes_pipe.service_factor %></td>
+    <td><%= sizes_pipe.material %></td>
+    <td><%= sizes_pipe.climatic %></td>
+    <td><%= sizes_pipe.diameter_bore %></td>
+    <td><%= Document.find(sizes_pipe.document_id).name %></td>
+    <td><%= link_to 'Show', sizes_pipe %></td>
+    <td><%= link_to 'Edit', edit_sizes_pipe_path(sizes_pipe) %></td>
+    <td><%= link_to 'Destroy', sizes_pipe, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sizes pipe', new_sizes_pipe_path %>

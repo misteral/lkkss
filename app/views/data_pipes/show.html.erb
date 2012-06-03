@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Number product:</b>
+  <%= @data_pipe.number_product %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @data_pipe.amount %>
+</p>
+
+
+<%= link_to 'Edit', edit_data_pipe_path(@data_pipe) %> |
+<%= link_to 'Back', data_pipes_path %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @support_document.name %>
+</p>
+
+<p>
+  <b>Name product:</b>
+  <%= @support_document.name_product %>
+</p>
+
+<p>
+  <b>Date issue:</b>
+  <%= @support_document.date_issue %>
+</p>
+
+
+<%= link_to 'Edit', edit_support_document_path(@support_document) %> |
+<%= link_to 'Back', support_documents_path %>

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Output:</b>
+  <%= @conclusion.output %>
+</p>
+
+<p>
+  <b>Data pipe:</b>
+  <%= DataPipe.find(@conclusion.data_pipe_id).number_product %>
+</p>
+
+<p>
+  <b>Type pipe:</b>
+  <%= TypePipe.find(@conclusion.type_pipe_id).name %>
+</p>
+
+<p>
+  <b>Document:</b>
+  <%= Document.find(@conclusion.document_id).name %>
+</p>
+
+
+<%= link_to 'Edit', edit_conclusion_path(@conclusion) %> |
+<%= link_to 'Back', conclusions_path %>

@@ -1,0 +1,23 @@
+<h1>Listing type_pipes</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @type_pipes.each do |type_pipe| %>
+  <tr>
+    <td><%= type_pipe.name %></td>
+    <td><%= link_to 'Show', type_pipe %></td>
+    <td><%= link_to 'Edit', edit_type_pipe_path(type_pipe) %></td>
+    <td><%= link_to 'Destroy', type_pipe, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Type pipe', new_type_pipe_path %>

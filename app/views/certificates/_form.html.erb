@@ -1,0 +1,66 @@
+<%= form_for(@certificate) do |f| %>
+  <% if @certificate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@certificate.errors.count, "error") %> prohibited this certificate from being saved:</h2>
+
+      <ul>
+      <% @certificate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <table BORDER=2  CELLPADDING=5>
+      <tr>
+        <td width="25%"><p align="right">тип акта</p></td>
+        <td width="25%"> <%= f.text_field :name %></td>
+        <td width="25%"></td>
+        <td width="25%"></td>
+      </tr>
+      <tr>
+        <td width="25%"><p align="right">№  <%= f.text_field :number %> </p></td>
+        <td colspan="3"><p> от <%= f.date_select :date_issue%></p></td>
+      </tr>
+      <tr>
+        <td>Место проведения входного контроля труб</td>
+        <td><%= f.collection_select :installation_site_id, InstallationSite.all, :id, :object %></td>
+        <td><p align="right">Трубы размером </p></td>
+        <td><%= f.text_field :number %> </td>
+      </tr>
+      <tr>
+        <td width="25%"><p align="right">Изготовлены по (ТУ, ГОСТ)</p></td>
+        <td width="25%"><%= f.collection_select :gost_id, Gost.all, :id, :name %></td>
+        <td width="25%"><p align="right">Конструкция труб</p></td>
+        <td><%= f.collection_select :type_pipe_id, TypePipe.all, :id, :name %></td>
+      </tr>
+      <tr>
+        <td width="25%"></td>
+        <td width="25%"></td>
+        <td width="25%"><p align="right">Класс прочности</p></td>
+        <td><%= f.text_field :number %></td>
+      </tr>
+      <tr>
+        <td width="25%"><p align="right">Изоляционное покрытие по ТУ</p></td>
+        <td width="25%"><%= f.collection_select :ty_id, Ty.all, :id, :name %></td>
+        <td width="25%"><p align="right">Завод изготовитель</p></td>
+        <td width="25%"><p align="left"><%= f.collection_select :manufactur_id, Manufactur.all, :id, :name  %></p></td>
+      </tr>
+    </table>
+
+  <div class="field">
+    <%= f.label :manufactur_id %><br />
+    <%= f.collection_select :manufactur_id, Manufactur.all, :id, :name  %>
+  </div>
+  <div class="field" >
+    <%= f.label :date_issue %><br />
+    <%= f.datetime_select :date_issue %>
+  </div>
+  <div class="field">
+    <%= f.label :sizes_pipe_id %><br />
+    <%= f.number_field :sizes_pipe_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,35 @@
+<h1>Listing akts</h1>
+
+<table>
+  <tr>
+    <th>Data akt</th>
+    <th>Num trub oip</th>
+    <th>Num trub</th>
+    <th>Konstr</th>
+    <th>Zavod</th>
+    <th>Tipdef</th>
+    <th>Ntrub</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @akts.each do |akt| %>
+  <tr>
+    <td><%= akt.data_akt %></td>
+    <td><%= akt.num_trub_oip %></td>
+    <td><%= akt.num_trub %></td>
+    <td><%= akt.konstr_id %></td>
+    <td><%= akt.zavod_id %></td>
+    <td><%= akt.tipdef_id %></td>
+    <td><%= akt.ntrub_id %></td>
+    <td><%= link_to 'Show', akt %></td>
+    <td><%= link_to 'Edit', edit_akt_path(akt) %></td>
+    <td><%= link_to 'Destroy', akt, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Akt', new_akt_path %>

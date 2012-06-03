@@ -1,0 +1,46 @@
+<%= form_for(@akt) do |f| %>
+  <% if @akt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@akt.errors.count, "error") %> prohibited this akt from being saved:</h2>
+
+      <ul>
+      <% @akt.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :data_akt %><br />
+    <%= f.datetime_select :data_akt %>
+  </div>
+  <div class="field">
+    <%= f.label :num_trub_oip %><br />
+    <%= f.number_field :num_trub_oip %>
+  </div>
+  <div class="field">
+    <%= f.label :num_trub %><br />
+    <%= f.number_field :num_trub %>
+  </div>
+  <div class="field">
+    <%= f.label :konstr_id %><br />
+    <%= f.number_field :konstr_id %>
+  </div>
+  <div class="field">
+    <%= f.label :zavod_id %><br />
+    <%= f.number_field :zavod_id %>
+  </div>
+  <div class="field">
+    <%= f.label :tipdef_id %><br />
+    <%= f.number_field :tipdef_id %>
+  </div>
+  <div class="field">
+    <%= f.label :ntrub_id %><br />
+    <%= f.number_field :ntrub_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

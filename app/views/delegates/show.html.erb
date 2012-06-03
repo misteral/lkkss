@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>название лаборатории:</b>
+  <%= @delegate.name_lab %>
+</p>
+
+<p>
+  <b>сертификат:</b>
+  <%= @delegate.certificate %>
+</p>
+
+<p>
+  <b>скор действия:</b>
+  <%= @delegate.period_valid %>
+</p>
+
+<p>
+  <b>фамилия:</b>
+  <%= @delegate.first_name %>
+</p>
+
+<p>
+  <b>имя:</b>
+  <%= @delegate.last_name %>
+</p>
+
+<p>
+  <b>отчество:</b>
+  <%= @delegate.middle_name %>
+</p>
+
+<p>
+  <b>должность:</b>
+  <%= @delegate.job %>
+</p>
+
+<p>
+  <b>квалификац. удостоверение:</b>
+  <%= @delegate.certificate_competence %>
+</p>
+
+<p>
+  <b>виды НК:</b>
+  <%= @delegate.type_nk %>
+</p>
+
+<p>
+  <b>уровень НК:</b>
+  <%= @delegate.level_nk %>
+</p>
+
+
+<%= link_to 'изменить', edit_delegate_path(@delegate) %> |
+<%= link_to 'назад', delegates_path %>

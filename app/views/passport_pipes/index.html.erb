@@ -1,0 +1,25 @@
+<h1>Listing passport_pipes</h1>
+
+<table>
+  <tr>
+    <th>Passport</th>
+    <th>Pipe</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @passport_pipes.each do |passport_pipe| %>
+  <tr>
+    <td><%= passport_pipe.passport_id %></td>
+    <td><%= passport_pipe.pipe_id %></td>
+    <td><%= link_to 'Show', passport_pipe %></td>
+    <td><%= link_to 'Edit', edit_passport_pipe_path(passport_pipe) %></td>
+    <td><%= link_to 'Destroy', passport_pipe, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Passport pipe', new_passport_pipe_path %>

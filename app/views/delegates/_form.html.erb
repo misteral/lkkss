@@ -1,0 +1,57 @@
+<%= form_for(@delegate) do |f| %>
+  <% if @delegate.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@delegate.errors.count, "error") %> prohibited this delegate from being saved:</h2>
+
+      <ul>
+      <% @delegate.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name_lab %><br />
+    <%= f.text_field :name_lab %>
+  </div>
+  <div class="field">
+    <%= f.label :certificate %><br />
+    <%= f.number_field :certificate %>
+  </div>
+  <div class="field">
+    <%= f.label :period_valid %><br />
+    <%= f.datetime_select :period_valid %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :middle_name %><br />
+    <%= f.text_field :middle_name %>
+  </div>
+  <div class="field">
+    <%= f.label :job %><br />
+    <%= f.text_field :job %>
+  </div>
+  <div class="field">
+    <%= f.label :certificate_competence %><br />
+    <%= f.number_field :certificate_competence %>
+  </div>
+  <div class="field">
+    <%= f.label :type_nk %><br />
+    <%= f.text_field :type_nk %>
+  </div>
+  <div class="field">
+    <%= f.label :level_nk %><br />
+    <%= f.text_field :level_nk %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

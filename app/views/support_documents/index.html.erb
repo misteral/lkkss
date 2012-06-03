@@ -1,0 +1,27 @@
+<h1>Listing support_documents</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Name product</th>
+    <th>Date issue</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @support_documents.each do |support_document| %>
+  <tr>
+    <td><%= support_document.name %></td>
+    <td><%= support_document.name_product %></td>
+    <td><%= support_document.date_issue %></td>
+    <td><%= link_to 'Show', support_document %></td>
+    <td><%= link_to 'Edit', edit_support_document_path(support_document) %></td>
+    <td><%= link_to 'Destroy', support_document, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Support document', new_support_document_path %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>название:</b>
+  <%= @manufactur.name %>
+</p>
+
+<p>
+  <b>адрес:</b>
+  <%= @manufactur.address %>
+</p>
+
+<p>
+  <b>телефон:</b>
+  <%= @manufactur.phone %>
+</p>
+
+
+<%= link_to 'изменить', edit_manufactur_path(@manufactur) %> |
+<%= link_to 'назад', manufacturs_path %>

@@ -1,0 +1,53 @@
+<%= form_for(@result) do |f| %>
+  <% if @result.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@result.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+      <ul>
+      <% @result.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :outside_diameter %><br />
+    <%= f.number_field :outside_diameter %>
+  </div>
+  <div class="field">
+    <%= f.label :wall_tickness %><br />
+    <%= f.number_field :wall_tickness %>
+  </div>
+  <div class="field">
+    <%= f.label :construction %><br />
+    <%= f.text_field :construction %>
+  </div>
+  <div class="field">
+    <%= f.label :roundness %><br />
+    <%= f.text_field :roundness %>
+  </div>
+  <div class="field">
+    <%= f.label :stratification %><br />
+    <%= f.text_field :stratification %>
+  </div>
+  <div class="field">
+    <%= f.label :defect %><br />
+    <%= f.text_field :defect %>
+  </div>
+  <div class="field">
+    <%= f.label :isolation %><br />
+    <%= f.text_field :isolation %>
+  </div>
+  <div class="field">
+    <%= f.label :stamp_valid %><br />
+    <%= f.text_field :stamp_valid %>
+  </div>
+  <div class="field">
+    <%= f.label :mass_init %><br />
+    <%= f.number_field :mass_init %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

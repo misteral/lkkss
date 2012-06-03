@@ -1,0 +1,23 @@
+<h1>ГОСТы</h1>
+
+<table>
+  <tr>
+    <th>название</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @gosts.each do |gost| %>
+  <tr>
+    <td><%= gost.name %></td>
+    <td><%= link_to 'показать', gost %></td>
+    <td><%= link_to 'изменить', edit_gost_path(gost) %></td>
+    <td><%= link_to 'удалить', gost, confirm: 'действительно хотите удалить?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'добавить', new_gost_path %>

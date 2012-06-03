@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @zavod.name %>
+</p>
+
+<p>
+  <b>Shot name:</b>
+  <%= @zavod.shot_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_zavod_path(@zavod) %> |
+<%= link_to 'Back', zavods_path %>

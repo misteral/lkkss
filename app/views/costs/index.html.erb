@@ -1,0 +1,25 @@
+<h1>Listing costs</h1>
+
+<table>
+  <tr>
+    <th>Date start</th>
+    <th>Date end</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @costs.each do |cost| %>
+  <tr>
+    <td><%= cost.date_start %></td>
+    <td><%= cost.date_end %></td>
+    <td><%= link_to 'Show', cost %></td>
+    <td><%= link_to 'Edit', edit_cost_path(cost) %></td>
+    <td><%= link_to 'Destroy', cost, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Cost', new_cost_path %>

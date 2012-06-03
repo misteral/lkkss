@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Lkksswin</title>
+  <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<table>
+        <tr>
+          <td colspan="2"><p> </p></td>
+        </tr>
+		<tr>
+		<td width="60"><%= render 'layouts/menu' %></td>
+
+        <td><br><%= yield %></td>
+        </tr>
+	</table>
+</body>
+</html>

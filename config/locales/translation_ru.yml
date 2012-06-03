@@ -1,0 +1,234 @@
+ru:
+  activerecord:
+    models:
+      active_admin/comment: active_admin/comment  #g
+      tipdef: tipdef  #g
+      konstr: konstr  #g
+      zavod: "Заводы"  #g
+      akt: "Акты"  #g
+      ntrub: ntrub  #g
+      admin_user: admin_user  #g
+      certificate: "Сертификаты"  #g
+      conclusion: вывод  #g
+      data_pipe: данные трубы  #g
+      delegate: представитель лаборатории  #g
+      document: "Документы"  #g
+      download: download  #g
+      gost: "ГОСТ"  #g
+      installation_site: место устанки  #g
+      instrumentation: прибор  #g
+      manufactur: производитель  #g
+      passport_pipe: passport_pipe  #g
+      passport: "Паспорт"  #g
+      pipe: труба  #g
+      represent_host: принимающая сторона  #g
+      represent_tran: передающая сторона  #g
+      result: результаты  #g
+      sizes_pipe: размер трубы  #g
+      support_document: сопроводительные документы  #g
+      terra: земля=)  #вообщет нафиг ненадо
+      ty: "Техничесикие условия"  #g
+      type_pipe: тип трубы  #g
+
+    attributes:
+      active_admin/comment:
+        resource_type: resource_type  #g
+        author_type: author_type  #g
+        body: body  #g
+        namespace: namespace  #g
+        resource: resource  #g
+        author: author  #g
+
+      tipdef:
+        name: name  #g
+        akts: akts  #g
+        active_admin_comments: active_admin_comments  #g
+
+      konstr:
+        name: name  #g
+        shot_name: shot_name  #g
+        akts: akts  #g
+        active_admin_comments: active_admin_comments  #g
+
+      zavod:
+        name: "Наименование"  #g
+        shot_name: "Короткое наименование"  #g
+        akts: akts  #g
+        active_admin_comments: active_admin_comments  #g
+
+      akt:
+        data_akt: "Дата акта"  #g
+        num_trub_oip: num_trub_oip  #g
+        num_trub: num_trub  #g
+        zavod: "Завод"  #g
+        tipdef: tipdef  #g
+        ntrub: ntrub  #g
+        konstr: konstr  #g
+        active_admin_comments: active_admin_comments  #g
+
+      ntrub:
+        name: name  #g
+        shot_name: shot_name  #g
+        akts: akts  #g
+        active_admin_comments: active_admin_comments  #g
+
+      admin_user:
+        email: email  #g
+        encrypted_password: encrypted_password  #g
+        reset_password_token: reset_password_token  #g
+        reset_password_sent_at: reset_password_sent_at  #g
+        remember_created_at: remember_created_at  #g
+        current_sign_in_at: current_sign_in_at  #g
+        last_sign_in_at: last_sign_in_at  #g
+        current_sign_in_ip: current_sign_in_ip  #g
+        last_sign_in_ip: last_sign_in_ip  #g
+
+      certificate:
+        date_issue: дата проверки  #g
+        magnetic: мангитная индукция  #g
+        application_isolation: нанисение изоляции  #g
+        date_shipment: дата отгрузки  #g
+        sizes_pipe: зармер трубы  #g
+        manufacture: изготовитель  #g
+        conclusion: вывод  #g
+        result: результат  #g
+        installation_site: место установки  #g
+        gost: ГОСТ  #g
+        ty: ТУ  #g
+        support_document: сопроводительный документ  #g
+        represent_host: принимающая сторона  #g
+        represent_trans: передающая сторона  #g
+        instrumentation: приборы  #g
+        delegate: представитель лаборатории  #g
+
+      conclusion:
+        output: заключение  #g
+        type_pipe: тип трубы  #g
+        data_pipe: данные трубы  #g
+        document: документ  #g
+        certificates: акт  #g
+
+      data_pipe:
+        number_product: номер продукци  #g
+        amount: количество в партии  #g
+        conclusion: conclusion  #g
+
+      delegate:
+        name_lab: название лаборатории  #g
+        certificate: номер свидетельства  #g
+        period_valid: срок действия  #g
+        first_name: фамилия  #g
+        last_name: имя  #g
+        middle_name: отчество  #g
+        job: должность  #g
+        certificate_competence: номер квалификац. удостоверения  #g
+        type_nk: типы НК  #g
+        level_nk: уровень НК  #g
+        certificates: акт  #g
+
+      document:
+        name: номер  #g
+        notation: наименование  #g
+        sizes_pipes: размер трубы  #g
+        conclusion: вывод  #g
+
+      download:
+        name: name  #g
+        link: link  #g
+
+      gost:
+        name: название  #g
+        certificates: акт  #g
+
+      installation_site:
+        object: объект  #g
+        data: дата установки  #g
+        joint: стык  #g
+        pipe: труба  #g
+        data_pipe: данные трубы  #g
+        certificates: акт  #g
+
+      instrumentation:
+        name: назвение  #g
+        mark: марка  #g
+        date_verification: дата поверки  #g
+        certificate: номер свидетельства  #g
+        certificates: акт  #g
+
+      manufactur: 
+        name: название  #g
+        address: адресс  #g
+        phone: телефон  #g
+        certificates: акт  #g
+
+      passport_pipe:
+        passports: паспорт  #g
+        pipes: труба  #g
+
+      passport:
+        link: линк  #g
+        passport_pipe: passport_pipe  #g
+
+      pipe:
+        notation: обозначение  #g
+        passport_pipe: passport_pipe  #g
+        type_pipe: тип трубы  #g
+        installation_sites: место установки  #g
+
+      represent_host:
+        first_name: фамилия  #g
+        last_name: имя  #g
+        middle_name: отчество  #g
+        job: должность  #g
+        organization: организация  #g
+        certificates: акт  #g
+
+      represent_tran:
+        first_name: фамилия  #g
+        last_name: имя  #g
+        middle_name: отчесто  #g
+        job: доолжность  #g
+        organization: организация  #g
+        certificates: акт  #g
+
+      result:
+        outside_diameter: наружный диаметр  #g
+        wall_tickness: толщина стенок  #g
+        construction: строительные размеры  #g
+        roundness: овальность  #g
+        stratification: налицие расслоения  #g
+        defect: дефект  #g
+        isolation: состояние изоляции  #g
+        stamp_valid: примечения  #g
+        mass_init: масса  #g
+        certificates: акт  #g
+
+      sizes_pipe:
+        bending_angle: угол гиба  #g
+        diameter_trunk: диаметр магистрали  #g
+        wall_tickness: толщина стенки  #g
+        strength_class: класс прочности  #g
+        pressure: рабочее давление  #g
+        service_factor: условия эксплуотации  #g
+        material: материал  #g
+        climatic: климатическое исполение  #g
+        diameter_bore: диаметр отверстия  #g
+        document: нормативный документ  #g
+        certificates: акт  #g
+
+      support_document:
+        name: название  #g
+        name_product: название продукции  #g
+        date_issue: дата выдачи  #g
+        certificates: акт  #g
+
+      terra:
+        name: name  #g
+
+      ty:
+        name: название  #g
+        certificates: акт  #g
+
+      type_pipe:
+        name: назвение  #g
+        conclusion: заключение   #g

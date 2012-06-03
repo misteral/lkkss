@@ -1,0 +1,2 @@
+module InstallationSitesHelper
+end

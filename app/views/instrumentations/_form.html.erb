@@ -1,0 +1,33 @@
+<%= form_for(@instrumentation) do |f| %>
+  <% if @instrumentation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@instrumentation.errors.count, "error") %> prohibited this instrumentation from being saved:</h2>
+
+      <ul>
+      <% @instrumentation.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :mark %><br />
+    <%= f.text_field :mark %>
+  </div>
+  <div class="field">
+    <%= f.label :date_verification %><br />
+    <%= f.datetime_select :date_verification %>
+  </div>
+  <div class="field">
+    <%= f.label :certificate %><br />
+    <%= f.number_field :certificate %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

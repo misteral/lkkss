@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Object:</b>
+  <%= @installation_site.object %>
+</p>
+
+<p>
+  <b>Data:</b>
+  <%= @installation_site.data %>
+</p>
+
+<p>
+  <b>Joint:</b>
+  <%= @installation_site.joint %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_installation_site_path(@installation_site) %> |
+<%= link_to 'Back', installation_sites_path %>

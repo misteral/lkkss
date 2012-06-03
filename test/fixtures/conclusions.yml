@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  output: MyString
+  data_pipe_id: 1
+  type_pipe_id: 1
+  document_id: 1
+
+two:
+  output: MyString
+  data_pipe_id: 1
+  type_pipe_id: 1
+  document_id: 1

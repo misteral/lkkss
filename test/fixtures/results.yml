@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  outside_diameter: 1
+  wall_tickness: 1
+  construction: MyString
+  roundness: MyString
+  stratification: MyString
+  defect: MyString
+  isolation: MyString
+  stamp_valid: MyString
+  mass_init: 1
+
+two:
+  outside_diameter: 1
+  wall_tickness: 1
+  construction: MyString
+  roundness: MyString
+  stratification: MyString
+  defect: MyString
+  isolation: MyString
+  stamp_valid: MyString
+  mass_init: 1

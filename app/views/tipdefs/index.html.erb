@@ -1,0 +1,23 @@
+<h1>Listing tipdefs</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @tipdefs.each do |tipdef| %>
+  <tr>
+    <td><%= tipdef.name %></td>
+    <td><%= link_to 'Show', tipdef %></td>
+    <td><%= link_to 'Edit', edit_tipdef_path(tipdef) %></td>
+    <td><%= link_to 'Destroy', tipdef, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Tipdef', new_tipdef_path %>

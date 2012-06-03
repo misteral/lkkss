@@ -1,0 +1,25 @@
+<h1>Listing type_pipe_installation_sites</h1>
+
+<table>
+  <tr>
+    <th>Type pipe</th>
+    <th>Installation site</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @type_pipe_installation_sites.each do |type_pipe_installation_site| %>
+  <tr>
+    <td><%= type_pipe_installation_site.type_pipe_id %></td>
+    <td><%= type_pipe_installation_site.installation_site_id %></td>
+    <td><%= link_to 'Show', type_pipe_installation_site %></td>
+    <td><%= link_to 'Edit', edit_type_pipe_installation_site_path(type_pipe_installation_site) %></td>
+    <td><%= link_to 'Destroy', type_pipe_installation_site, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Type pipe installation site', new_type_pipe_installation_site_path %>

@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>First name:</b>
+  <%= @represent_host.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @represent_host.last_name %>
+</p>
+
+<p>
+  <b>Middle name:</b>
+  <%= @represent_host.middle_name %>
+</p>
+
+<p>
+  <b>Job:</b>
+  <%= @represent_host.job %>
+</p>
+
+<p>
+  <b>Organization:</b>
+  <%= @represent_host.organization %>
+</p>
+
+
+<%= link_to 'редактировать', edit_represent_host_path(@represent_host) %> |
+<%= link_to 'назад', represent_hosts_path %>

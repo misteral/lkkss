@@ -1,0 +1,23 @@
+<h1>Listing terras</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @terras.each do |terra| %>
+  <tr>
+    <td><%= terra.name %></td>
+    <td><%= link_to 'Show', terra %></td>
+    <td><%= link_to 'Edit', edit_terra_path(terra) %></td>
+    <td><%= link_to 'Destroy', terra, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Terra', new_terra_path %>

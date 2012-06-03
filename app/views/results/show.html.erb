@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Outside diameter:</b>
+  <%= @result.outside_diameter %>
+</p>
+
+<p>
+  <b>Wall tickness:</b>
+  <%= @result.wall_tickness %>
+</p>
+
+<p>
+  <b>Construction:</b>
+  <%= @result.construction %>
+</p>
+
+<p>
+  <b>Roundness:</b>
+  <%= @result.roundness %>
+</p>
+
+<p>
+  <b>Stratification:</b>
+  <%= @result.stratification %>
+</p>
+
+<p>
+  <b>Defect:</b>
+  <%= @result.defect %>
+</p>
+
+<p>
+  <b>Isolation:</b>
+  <%= @result.isolation %>
+</p>
+
+<p>
+  <b>Stamp valid:</b>
+  <%= @result.stamp_valid %>
+</p>
+
+<p>
+  <b>Mass init:</b>
+  <%= @result.mass_init %>
+</p>
+
+
+<%= link_to 'Edit', edit_result_path(@result) %> |
+<%= link_to 'Back', results_path %>

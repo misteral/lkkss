@@ -1,0 +1,57 @@
+<%= form_for(@sizes_pipe) do |f| %>
+  <% if @sizes_pipe.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@sizes_pipe.errors.count, "error") %> prohibited this sizes_pipe from being saved:</h2>
+
+      <ul>
+      <% @sizes_pipe.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :bending_angle %><br />
+    <%= f.text_field :bending_angle %>
+  </div>
+  <div class="field">
+    <%= f.label :diameter_trunk %><br />
+    <%= f.text_field :diameter_trunk %>
+  </div>
+  <div class="field">
+    <%= f.label :wall_tickness %><br />
+    <%= f.text_field :wall_tickness %>
+  </div>
+  <div class="field">
+    <%= f.label :strength_class %><br />
+    <%= f.text_field :strength_class %>
+  </div>
+  <div class="field">
+    <%= f.label :pressure %><br />
+    <%= f.text_field :pressure %>
+  </div>
+  <div class="field">
+    <%= f.label :service_factor %><br />
+    <%= f.text_field :service_factor %>
+  </div>
+  <div class="field">
+    <%= f.label :material %><br />
+    <%= f.text_field :material %>
+  </div>
+  <div class="field">
+    <%= f.label :climatic %><br />
+    <%= f.text_field :climatic %>
+  </div>
+  <div class="field">
+    <%= f.label :diameter_bore %><br />
+    <%= f.text_field :diameter_bore %>
+  </div>
+  <div class="field">
+    <%= f.label :document_id %><br />
+    <%= f.collection_select :document_id, Document.all, :id, :name  %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Notation:</b>
+  <%= @pipe.notation %>
+</p>
+
+<p>
+  <b>Passport pipe:</b>
+  <%= @pipe.passport_pipe_id %>
+</p>
+
+<p>
+  <b>Type pipe:</b>
+  <%= TypePipe.find(@pipe.type_pipe_id).name %>
+</p>
+
+
+<%= link_to 'Edit', edit_pipe_path(@pipe) %> |
+<%= link_to 'Back', pipes_path %>

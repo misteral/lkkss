@@ -1,0 +1,23 @@
+<h1>Listing loadcertifics</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @loadcertifics.each do |loadcertific| %>
+  <tr>
+    <td><%= loadcertific.name %></td>
+    <td><%= link_to 'Show', loadcertific %></td>
+    <td><%= link_to 'Edit', edit_loadcertific_path(loadcertific) %></td>
+    <td><%= link_to 'Destroy', loadcertific, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Loadcertific', new_loadcertific_path %>

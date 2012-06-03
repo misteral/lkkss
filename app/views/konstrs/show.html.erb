@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @konstr.name %>
+</p>
+
+<p>
+  <b>Shot name:</b>
+  <%= @konstr.shot_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_konstr_path(@konstr) %> |
+<%= link_to 'Back', konstrs_path %>

@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name_lab: MyString
+  certificate: 1
+  period_valid: 2012-02-25 15:45:59
+  first_name: MyString
+  last_name: MyString
+  middle_name: MyString
+  job: MyString
+  certificate_competence: 1
+  type_nk: MyString
+  level_nk: MyString
+
+two:
+  name_lab: MyString
+  certificate: 1
+  period_valid: 2012-02-25 15:45:59
+  first_name: MyString
+  last_name: MyString
+  middle_name: MyString
+  job: MyString
+  certificate_competence: 1
+  type_nk: MyString
+  level_nk: MyString

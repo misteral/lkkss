@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @terra.name %>
+</p>
+
+<%	s = Excel.new("http://localhost:3000/uploads/excel/new.xls")   %>
+<%= link_to 'Edit', edit_terra_path(@terra) %> |
+<%= link_to 'Back', terras_path %>

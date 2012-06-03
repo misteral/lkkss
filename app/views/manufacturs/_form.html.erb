@@ -1,0 +1,35 @@
+<%= form_for(@manufactur) do |f| %>
+  <% if @manufactur.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@manufactur.errors.count, "error") %> prohibited this manufactur from being saved:</h2>
+
+      <ul>
+      <% @manufactur.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <table>
+  	<tr>
+  <div class="field">
+    <td ><%= f.label 'название' %></td>
+    <td ><%= f.text_field :name %></td>
+  </div>
+  </tr>
+  <tr>
+  <div class="field">
+    <td><%= f.label 'адресс' %></td>
+    <td><%= f.text_field :address %></td>
+  </div>
+  <tr>
+  <div class="field">
+    <td><%= f.label 'телефон' %></td>
+    <td><%= f.text_field :phone %></td>
+  </div>
+  </tr>
+  </table>
+  <div class="actions">
+    <%= f.submit 'добавить'%>
+  </div>
+<% end %>

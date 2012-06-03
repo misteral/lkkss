@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bending_angle: MyString
+  diameter_trunk: MyString
+  wall_tickness: MyString
+  strength_class: MyString
+  pressure: MyString
+  service_factor: MyString
+  material: MyString
+  climatic: MyString
+  diameter_bore: MyString
+  document_id: 1
+
+two:
+  bending_angle: MyString
+  diameter_trunk: MyString
+  wall_tickness: MyString
+  strength_class: MyString
+  pressure: MyString
+  service_factor: MyString
+  material: MyString
+  climatic: MyString
+  diameter_bore: MyString
+  document_id: 1

@@ -1,0 +1,41 @@
+<h3>представители</h3>
+
+<table>
+  <tr>
+    <th>название лаборатории</th>
+    <th>свидетельство</th>
+    <th>срок действия</th>
+    <th>фамилия</th>
+    <th>имя</th>
+    <th>отчество</th>
+    <th>должность</th>
+    <th>удостоверение</th>
+    <th>видя НК</th>
+    <th>уровень НК</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @delegates.each do |delegate| %>
+  <tr>
+    <td><%= delegate.name_lab %></td>
+    <td><%= delegate.certificate %></td>
+    <td><%= delegate.period_valid %></td>
+    <td><%= delegate.first_name %></td>
+    <td><%= delegate.last_name %></td>
+    <td><%= delegate.middle_name %></td>
+    <td><%= delegate.job %></td>
+    <td><%= delegate.certificate_competence %></td>
+    <td><%= delegate.type_nk %></td>
+    <td><%= delegate.level_nk %></td>
+    <td><%= link_to 'просмотреть', delegate %></td>
+    <td><%= link_to 'изменить', edit_delegate_path(delegate) %></td>
+    <td><%= link_to 'удалить', delegate, confirm: 'вы уверены?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'добавить', new_delegate_path %>

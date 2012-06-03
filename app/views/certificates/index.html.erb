@@ -1,0 +1,55 @@
+<h2>Акты входного контроля и освидетельствования</h2>
+<br>
+<%= form_for "$search" do |s| %>
+
+   <div class="field">
+       <%= s.label :search, t("введите ключевой слово для поиска") %>
+       <%= s.text_field :search %> </p>
+   <div/>
+   <table><tr>
+   <div class="field">
+        <td width="20"><%= s.label "произвести фильтрацию по"%></td>
+        <td width="20"><%= s.collection_select :guide, Manufactur.all, :id, :phone %></td>
+   </div>
+   </tr>
+   <tr>
+   <div class="field">
+        <td><%= s.label "и значению"%></td>
+        <td><%= s.collection_select :guide, Manufactur.all, :id, :phone %></td>
+   </div>
+   </tr>
+   </table>
+<% end %>
+<table>
+<tr>
+    <td width="5%"> <%= button_to 'поиск', :action => 'new', :controller => 'loadcertifics' %></td>
+    <td width="5%"><%= button_to 'фильтрация', :action => 'new', :controller => 'loadcertifics' %></td>
+    <td width="90%"></td>
+</tr>
+</table>
+<h3>список возможных актов</h3>
+<table>
+  <tr>
+    <th>дата проведения контроля</th>
+    <th>название</th>
+    <th>номер</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @certificates.each do |certificate| %>
+  <tr>
+    <td><%= certificate.date_issue.to_date %></td>
+    <td><%= certificate.name %></td>
+    <td><%= certificate.number %></td>
+    <td><%= link_to 'просмотреть', certificate %></td>
+    <td><%= link_to 'изменить', edit_certificate_path(certificate) %></td>
+    <td><%= link_to 'удалить', certificate, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'добавить акт', new_certificate_path %>

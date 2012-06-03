@@ -1,0 +1,11 @@
+<%= simple_form_for(@magazine) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :start, :label => "укажите дату начала ведения журнала" %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "создать журнал"%>
+  </div>
+<% end %>

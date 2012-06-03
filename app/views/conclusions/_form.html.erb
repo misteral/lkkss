@@ -1,0 +1,33 @@
+<%= form_for(@conclusion) do |f| %>
+  <% if @conclusion.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@conclusion.errors.count, "error") %> prohibited this conclusion from being saved:</h2>
+
+      <ul>
+      <% @conclusion.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :output %><br />
+    <%= f.text_field :output %>
+  </div>
+  <div class="field">
+    <%= f.label :data_pipe_id %><br />
+    <%= f.collection_select :data_pipe_id, DataPipe.all, :id, :number_product %>
+  </div>
+  <div class="field">
+    <%= f.label :type_pipe_id %><br />
+    <%= f.collection_select :type_pipe_id, TypePipe.all, :id, :name %>
+  </div>
+  <div class="field">
+    <%= f.label :document_id %><br />
+    <%= f.collection_select :document_id, Document.all, :id, :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
