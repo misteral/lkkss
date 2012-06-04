@@ -12,12 +12,12 @@
   <% end %>
 <table>
   <tr><div class="field">
-    <td width="10%"><%= f.label :first_name %></td>
+    <td width="10%"><%= f.label :last_name %></td>
     <td width="25%"><%= f.text_field :first_name %></td>
     <td width="65%"></td>
   </tr></div>
   <tr><div class="field">
-    <td><%= f.label :last_name %></td>
+    <td><%= f.label :first_name %></td>
     <td><%= f.text_field :last_name %></td>
   </tr></div>
   <tr><div class="field">
@@ -34,6 +34,6 @@
   </tr></div>
 </table>
   <div class="actions">
-    <%= f.submit(:value => "сохранить изменения" ) %>
+    <%= f.submit(:value => "сохранить " ) %>
   </div>
 <% end %>

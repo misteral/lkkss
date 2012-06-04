@@ -1,0 +1,2 @@
+module MenuReportsHelper
+end

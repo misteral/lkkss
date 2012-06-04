@@ -1,9 +1,15 @@
 Lkksswin::Application.routes.draw do
+  resources :menu_reports
+
+  devise_for :users
+
+  devise_for :models
+  match '/certificates/new' => 'certificates#new'
   resources :costs
   post "certificates/cost"
   resources :magazines
   get "magazines/show"
-  get "report/index"
+  #get "report/index"
   get "journal/index"
   post "journal/index"
   get "journal/link"
@@ -16,6 +22,7 @@ Lkksswin::Application.routes.draw do
   get "load/index"
   get "load/rem"
   get "downloads/rem"
+  resources :reports
   resources :results
   resources :support_documents
   resources :certificates
@@ -37,13 +44,13 @@ Lkksswin::Application.routes.draw do
   resources :manufacturs
   get "guide/index"
   get "main/index"
-  resources :terras
-  resources :downloads
-  resources :tipdefs
-  resources :zavods
-  resources :ntrubs
-  resources :konstrs
-  resources :akts
+  #resources :terras
+  #resources :downloads
+  #resources :tipdefs
+  #resources :zavods
+  #resources :ntrubs
+  #resources :konstrs
+  #resources :akts
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
   # The priority is based upon order of creation:
@@ -95,7 +102,11 @@ Lkksswin::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
+
+
   root :to => 'loadcertifics#new'
+
+
 
   # See how all your routes lay out with "rake routes"
 
