@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  hour: 1
+  material: 1
+
+two:
+  hour: 1
+  material: 1

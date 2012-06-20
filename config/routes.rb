@@ -1,4 +1,8 @@
 Lkksswin::Application.routes.draw do
+  resources :cost_inputs
+
+  resources :cost_menus
+
   resources :xls
 
   resources :menu_reports

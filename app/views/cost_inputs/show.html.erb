@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Hour:</b>
+  <%= @cost_input.hour %>
+</p>
+
+<p>
+  <b>Material:</b>
+  <%= @cost_input.material %>
+</p>
+
+
+<%= link_to 'Edit', edit_cost_input_path(@cost_input) %> |
+<%= link_to 'Back', cost_inputs_path %>

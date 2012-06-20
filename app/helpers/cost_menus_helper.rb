@@ -1,0 +1,2 @@
+module CostMenusHelper
+end

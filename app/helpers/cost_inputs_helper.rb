@@ -1,0 +1,2 @@
+module CostInputsHelper
+end

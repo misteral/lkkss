@@ -227,6 +227,6 @@
 <% $fed=1000 %>
 
 <%= button_to 'произвести расчет затрат', :action => 'cost', :controller => 'certificates' %>
-<%= link_to '', edit_certificate_path(@certificate) %> |
-<%= link_to 'Back', certificates_path %>
+<% link_to 'изменить', edit_certificate_path(@certificate) %>
+<%= button_to 'назад', certificates_path %>
 
