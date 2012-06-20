@@ -10,44 +10,65 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :outside_diameter %><br />
-    <%= f.number_field :outside_diameter %>
-  </div>
-  <div class="field">
-    <%= f.label :wall_tickness %><br />
-    <%= f.number_field :wall_tickness %>
-  </div>
-  <div class="field">
-    <%= f.label :construction %><br />
-    <%= f.text_field :construction %>
-  </div>
-  <div class="field">
-    <%= f.label :roundness %><br />
-    <%= f.text_field :roundness %>
-  </div>
-  <div class="field">
-    <%= f.label :stratification %><br />
-    <%= f.text_field :stratification %>
-  </div>
-  <div class="field">
-    <%= f.label :defect %><br />
-    <%= f.text_field :defect %>
-  </div>
-  <div class="field">
-    <%= f.label :isolation %><br />
-    <%= f.text_field :isolation %>
-  </div>
-  <div class="field">
-    <%= f.label :stamp_valid %><br />
-    <%= f.text_field :stamp_valid %>
-  </div>
-  <div class="field">
-    <%= f.label :mass_init %><br />
-    <%= f.number_field :mass_init %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+  <table>
+    <tr><div class="field">
+      <td><%= f.label :outside_diameter %><br /></td>
+      <td><%= f.number_field :outside_diameter %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label :wall_tickness %><br /></td>
+      <td><%= f.number_field :wall_tickness %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label :roundness %><br /></td>
+      <td><%= f.text_field :roundness %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label :stratification %><br /></td>
+      <td><%= f.text_field :stratification %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label :defect %><br /></td>
+      <td><%= f.text_field :defect %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label 'дата нанисения изоляции' %><br /></td>
+      <td><%= f.text_field :isolation %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label 'отметка о годности' %><br /></td>
+      <td><%= f.text_field :stamp_valid %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label :mass_init %><br /></td>
+      <td><%= f.number_field :mass_init %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label 'от маркер торца' %><br /></td>
+      <td><%= f.number_field :from_mark_butt %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label 'от прав шва' %><br /></td>
+      <td><%= f.number_field :from_right_seam %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label 'длина' %><br /></td>
+      <td><%= f.number_field :length %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label 'ширина' %><br /></td>
+      <td><%= f.number_field :width %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label 'глубина' %><br /></td>
+      <td><%= f.number_field :deep %></td>
+    </tr></div>
+    <tr><div class="field">
+      <td><%= f.label 'магнитный остаток' %><br /></td>
+      <td><%= f.text_field :magnet %></td>
+    </tr></div>
+    </table>
+    <div class="actions">
+    <%= f.submit 'добавить ещё результаты'%>
   </div>
 <% end %>

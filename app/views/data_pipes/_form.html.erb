@@ -10,16 +10,17 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :number_product %><br />
-    <%= f.number_field :number_product %>
+  <table>
+  <tr><div class="field">
+    <td align="right"><%= f.label :number_product %><br /></td>
+    <td><%= f.number_field :number_product %></td>
+  </div></tr>
+  <tr><div class="field">
+    <td><%= f.label :amount %><br /></td>
+    <td><%= f.number_field :amount %></td>
+  </div></tr>
+  </table><div class="actions">
+    <%= f.submit 'продолжить' %>
   </div>
-  <div class="field">
-    <%= f.label :amount %><br />
-    <%= f.number_field :amount %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%=  %>
 <% end %>

@@ -1,4 +1,6 @@
 Lkksswin::Application.routes.draw do
+  resources :xls
+
   resources :menu_reports
 
   devise_for :users
@@ -7,6 +9,8 @@ Lkksswin::Application.routes.draw do
   match '/certificates/new' => 'certificates#new'
   resources :costs
   post "certificates/cost"
+  post "loadcertifics/new"
+  post "data_pipes/new"
   resources :magazines
   get "magazines/show"
   #get "report/index"

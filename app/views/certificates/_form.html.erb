@@ -47,20 +47,10 @@
       </tr>
     </table>
 
-  <div class="field">
-    <%= f.label :manufactur_id %><br />
-    <%= f.collection_select :manufactur_id, Manufactur.all, :id, :name  %>
-  </div>
-  <div class="field" >
-    <%= f.label :date_issue %><br />
-    <%= f.datetime_select :date_issue %>
-  </div>
-  <div class="field">
-    <%= f.label :sizes_pipe_id %><br />
-    <%= f.number_field :sizes_pipe_id %>
-  </div>
 
   <div class="actions">
-    <%= f.submit 'добавить акт' %>
+    <% f.submit 'продолжить заполение' %>
+
   </div>
+    <%= button_to 'продолжить', :action => 'new', :controller => 'data_pipes' %>
 <% end %>

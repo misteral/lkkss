@@ -15,14 +15,6 @@
     <%= f.label :notation %><br />
     <%= f.text_field :notation %>
   </div>
-  <div class="field">
-    <%= f.label :passport_pipe_id %><br />
-    <%= f.number_field :passport_pipe_id %>
-  </div>
-  <div class="field">
-    <%= f.label :type_pipe_id %><br />
-    <%= f.collection_select :type_pipe_id, TypePipe.all, :id, :name %>
-  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
