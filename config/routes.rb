@@ -1,4 +1,6 @@
 Lkksswin::Application.routes.draw do
+  get "costs/end_price"
+
   resources :cost_inputs
 
   resources :cost_menus

@@ -1,4 +1,5 @@
 class LoadcertificsController < InheritedResources::Base
+  before_filter :authenticate_user! #, :except => [:show, :index]
   def show
     @loadcertific = Loadcertific.find(params[:id])
     @list= 'public'+@loadcertific.certific.url

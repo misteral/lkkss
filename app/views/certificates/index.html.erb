@@ -33,6 +33,7 @@
     <th>дата проведения контроля</th>
     <th>название</th>
     <th>номер</th>
+    <th>ремонт</th>
     <th></th>
     <th></th>
     <th></th>
@@ -43,6 +44,7 @@
     <td><%= certificate.date_issue.to_date %></td>
     <td><%= certificate.name %></td>
     <td><%= certificate.number %></td>
+    <td><%= certificate.cost %></td>
     <td><%= link_to 'просмотреть', certificate %></td>
     <td><%= link_to 'изменить', edit_certificate_path(certificate) %></td>
     <td><%= link_to 'удалить', certificate, confirm: 'Are you sure?', method: :delete %></td>

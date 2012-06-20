@@ -1,4 +1,5 @@
 class CertificatesController < InheritedResources::Base
+  before_filter :authenticate_user! #, :except => [:show, :index]
   def cost
     #$der = $length.nil? ? "123456" : $length.length
     $length = []
@@ -28,7 +29,8 @@ class CertificatesController < InheritedResources::Base
     $der = @sum
 
     @certificate = Certificate.find($idr)
-    @certificate.co
+    @certificate.cost = @sum
+    @certificate.save
     #respond_to do |format|
     #  if @certificate.update_attributes(params[:certificate])
     #    format.html { redirect_to @xl, notice: 'Xl was successfully updated.' }
