@@ -1,20 +1,143 @@
+# coding: utf-8
+
 class LoadcertificsController < InheritedResources::Base
   before_filter :authenticate_user! #, :except => [:show, :index]
   def show
+    @call = 0
     @loadcertific = Loadcertific.find(params[:id])
-    @list= 'public'+@loadcertific.certific.url
-    @spreed = Spreadsheet.open 'public'+@loadcertific.certific.url
-    @sheet=@spreed.worksheet 1   #выбираем лист   p.s. счет с нуля
-    @row1 = @sheet.row(7)         #выбираем строку
-    @akt = 2
-    $named = findcell(1,11)
-    if $named.include?("(")         #определяет какой из актов ос$minвиделельствования или входа
-      input_control
-    else
-      examination
+    @list = 'public'+@loadcertific.certific.url
+    @spreed = Spreadsheet.open 'public' + @loadcertific.certific.url
+    # карявое изменение листа, если не тот который нужно
+    $sheet = @spreed.worksheet 1
+    if $sheet.nil?
+      $sheet = @spreed.worksheet 0
     end
+    #@row1 = @sheet.row(7)         #выбираем строку
+    $subitem = [[" " ],[" "],[" "],[" "] ]
+    $coll = []
+    $row_result = []
+    # поначалу он у нас акт освидетельствования
+    @named = "Акт освидетельствования труб"
+    # определяем тип акта, лажа, но определяет, потом можно запилить проверку файла
+    if !$sheet.nil?
+      $sheet.each_with_index do |rows, index_row|
+        # ужасный критерий, надо как-нить переписать
+        if !rows.join["№"].nil? and !rows.join["от"].nil? and !rows.join["-"].nil? and rows.join[","].nil?
+          # поиск номера и даты
+          rows.join.split(/(ЛККСС|Свид)/).each do |num|
+            if !num["№"].nil?
+              @number = num.scan(/(\d+)-(\d+)/).join('-')
+              @date = num.scan(/(\d+).(\d+).(\d+)/).join('.')
+            end
+          end
+        end
+        if !rows.join["Место проведения входного контроля труб"].nil?
+          @place = rows.compact[1]
+          @buf = rows.to_s.scan(/\d+/)
+          @sizepipe = @buf[0].to_s + "x" + @buf[1].to_s + "," + @buf[2].to_s
+        end
+        if !rows.join["Изготовлены по (ТУ, ГОСТ)"].nil?
+          @gost = rows.compact[1]
+          @typepipe = rows.compact[3]
+          @strengthclass = rows.compact[5]
+        end
+        if !rows.join["Изоляционное покрытие по ТУ"].nil?
+          @ty = rows.compact[1]
+          @manufacture = rows.compact[3]
+        end
+        # какбы бля исключения строки нумерации столбцов из поиска
+        if !rows.join["234"].nil?
+          @numbering = index_row
+        end
+        # можно выше поставить, а можно так оставить
+        rows.each_with_index do |cells, index_cell|
+          if !cells.to_s["(входного контроля труб)"].nil?
+            @named = "(входного контроля труб)"
+          end
+          if !cells.to_s["№ п/п "].nil?
+            $coll[1] = index_cell
+          end
+          if !cells.to_s["№ трубы/ партии"].nil?
+            $coll[2] = index_cell
+          end
+          if !cells.to_s["№ сертиф."].nil?
+            $coll[3] = index_cell
+          end
+          if !cells.to_s["Дата отгрузки"].nil?
+            $coll[4] = index_cell
+          end
+          if !cells.to_s["Дата нанесения изол."].nil?
+            $coll[5] = index_cell
+          end
+          if !cells.to_s["Фактич. диам. мм"].nil?
+            $coll[6] = index_cell
+          end
+          if !cells.to_s["Овальность, мм"].nil?
+            $coll[7] = index_cell
+          end
+          if !cells.to_s["Длина, м"].nil?
+            $coll[8] = index_cell
+          end
+          if !cells.to_s["Толщина стенки, мм"].nil?
+            $coll[9] = index_cell
+          end
+          if !cells.to_s["Тип дефекта "].nil?
+            $coll[10] = index_cell
+          end
+          if !cells.to_s["От марк. торца, м"].nil?
+            $coll[11] = index_cell
+          end
+          if !cells.to_s["Угловая ориентация, ч"].nil? or !cells.to_s["От пр. шва, м"].nil?
+            $coll[12] = index_cell
+          end
+          if !cells.to_s["Длина, мм"].nil?
+            $coll[13] = index_cell
+          end
+          if !cells.to_s["Ширина, мм"].nil?
+            $coll[14] = index_cell
+          end
+          if !cells.to_s["Глубина, мм"].nil?
+            $coll[15] = index_cell
+          end
+          if !cells.to_s["Ост. толщина, мм"].nil?
+            $coll[16] = index_cell
+          end
+          if !cells.to_s["Ост. маг.инд.мТл"].nil?
+            $coll[17] = index_cell
+          end
+          if !cells.to_s["Отметка о  годности."].nil?
+            $coll[18] = index_cell
+          end
+          if index_cell == $coll[1] and index_row != @numbering
+            if !cells.to_s["1"].nil?
+              $row_result[0] = index_row
+            end
+            if !cells.to_s["2"].nil?
+              $row_result[1] = index_row
+            end
+            if !cells.to_s["3"].nil?
+              $row_result[2] = index_row
+            end
+            if !cells.to_s["4"].nil?
+              $row_result[3] = index_row
+            end
+          end
+        end
+
+      end
+    end
+    @call = $row_result
+
+    #if $named.include?("(")         #определяет какой из актов ос$minвиделельствования или входа
+    #  input_control
+    #else
+    #  examination
+    #end
+
     $min = @manufacture
   end
+
+  #(входного контроля труб)
 
   def findcell(row,coll)
     @findrow = @sheet.row(row)
@@ -22,18 +145,40 @@ class LoadcertificsController < InheritedResources::Base
   end
 
   def examination                        #для освидетельствования
-    $number = findcell(1,12)
-    $named = findcell(0,8)
-    $date = findcell(1,14).split(' ')[1]
-    $place = findcell(3,7)
-    $sizepipe = findcell(3,21)
-    $gost = findcell(5,5)
-    $typepipe = findcell(5,15)
-    $strengthclass = findcell(5,22)
+    #$number = findcell(1,12)
+    #$named = findcell(0,8)
+    #$date = findcell(1,14).split(' ')[1]
+    #$place = findcell(3,7)
+    #$sizepipe = findcell(3,21)
+    #$gost = findcell(5,5)
+    #$typepipe = findcell(5,15)
+    #$strengthclass = findcell(5,22)
     $ty = findcell(7,6)
     $manufacture = findcell(7,16)
     $subitem = [[" " ],[" "],[" "],[" "] ] #инициализация массива + немер подпункта
     #@subitem[0][0] = findcell(12,0).to_i
+
+    $product_rate = []
+
+    @start_product = []
+    step = 0
+    if !$sheet.nil?
+      $sheet.each_with_index do |rows, index_row|
+        rows.each_with_index do |cells, index_cell|
+          if cells.to_s == "Поставщик"
+            @contractor_1_row = index_row
+            @contractor_1_coll = index_cell + 1
+          end
+          if cells.to_s == "наиме- нование"
+            @named_coll = index_cell
+          end
+          if !cells.to_s["нетто"].nil? and !cells.to_s["Коли"].nil?
+            @amount_coll = index_cell
+          end
+        end
+      end
+    end
+
     j=0
     begin
       $subitem[j][0] = findcell(12+j*12,0).to_i
@@ -92,6 +237,10 @@ class LoadcertificsController < InheritedResources::Base
     $ty = findcell(7,7)
     $manufacture = findcell(7,16)
     $subitem = [[" "],[" "],[" "],[" "] ] #инициализация массива + немер подпункта
+
+
+
+
     j=0
     begin
       $subitem[j][0] = findcell(12+j*12,0).to_i
