@@ -1,0 +1,23 @@
+<h1>Listing report_controls</h1>
+
+<table>
+  <tr>
+    <th>Date start</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @report_controls.each do |report_control| %>
+  <tr>
+    <td><%= report_control.date_start %></td>
+    <td><%= link_to 'Show', report_control %></td>
+    <td><%= link_to 'Edit', edit_report_control_path(report_control) %></td>
+    <td><%= link_to 'Destroy', report_control, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Report control', new_report_control_path %>

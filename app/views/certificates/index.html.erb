@@ -41,7 +41,7 @@
 
 <% @certificates.each do |certificate| %>
   <tr>
-    <td><%= certificate.date_issue.to_date %></td>
+    <td><%= certificate.date_issue %></td>
     <td><%= certificate.name %></td>
     <td><%= certificate.number %></td>
     <td><%= certificate.cost %></td>

@@ -1,4 +1,8 @@
 Lkksswin::Application.routes.draw do
+
+  get "report_controls/show"
+  resources :report_controls
+
   get "costs/end_price"
 
   resources :cost_inputs

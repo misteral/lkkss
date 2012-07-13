@@ -1,0 +1,8 @@
+<%= simple_form_for(@report_control) do |f| %>
+  <%= f.error_notification %>
+
+    укажите месяц <br> <%= f.date_select :date_start, :name => "укажите начало периода" %>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

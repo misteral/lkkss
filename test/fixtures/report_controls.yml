@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date_start: 2012-07-13 00:27:00
+
+two:
+  date_start: 2012-07-13 00:27:00

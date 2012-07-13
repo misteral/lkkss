@@ -2,8 +2,13 @@
 
 class LoadcertificsController < InheritedResources::Base
   before_filter :authenticate_user! #, :except => [:show, :index]
+  def findcell(row,coll)
+    @findrow = $sheet.row(row)
+    @findcell = @findrow[coll]
+  end
+
   def show
-    @call = 0
+    #@call = 0
     @loadcertific = Loadcertific.find(params[:id])
     @list = 'public'+@loadcertific.certific.url
     @spreed = Spreadsheet.open 'public' + @loadcertific.certific.url
@@ -13,51 +18,58 @@ class LoadcertificsController < InheritedResources::Base
       $sheet = @spreed.worksheet 0
     end
     #@row1 = @sheet.row(7)         #выбираем строку
-    $subitem = [[" " ],[" "],[" "],[" "] ]
+
     $coll = []
     $row_result = []
     # поначалу он у нас акт освидетельствования
-    @named = "Акт освидетельствования труб"
+    $named = "Акт освидетельствования труб"
     # определяем тип акта, лажа, но определяет, потом можно запилить проверку файла
     if !$sheet.nil?
       $sheet.each_with_index do |rows, index_row|
         # ужасный критерий, надо как-нить переписать
-        if !rows.join["№"].nil? and !rows.join["от"].nil? and !rows.join["-"].nil? and rows.join[","].nil?
+        if !rows.join["№"].nil? and !rows.join["от"].nil? and !rows.join["-"].nil? and rows.join[","].nil? and rows.join[":"].nil?
           # поиск номера и даты
           rows.join.split(/(ЛККСС|Свид)/).each do |num|
-            if !num["№"].nil?
-              @number = num.scan(/(\d+)-(\d+)/).join('-')
-              @date = num.scan(/(\d+).(\d+).(\d+)/).join('.')
+            if !num["№"].nil? and !num["от"].nil?
+              $number = num.scan(/(\d+)-(\d+)/).join('-')
+              $date = num.scan(/(\d+).(\d+).(\d+)/).join('.')
+              @call = rows.join.split(/(ЛККСС|Свид)/) #$number + "  " + $date
             end
           end
         end
         if !rows.join["Место проведения входного контроля труб"].nil?
-          @place = rows.compact[1]
+          $place = rows.compact[1]
           @buf = rows.to_s.scan(/\d+/)
-          @sizepipe = @buf[0].to_s + "x" + @buf[1].to_s + "," + @buf[2].to_s
+          $sizepipe = @buf[0].to_s + "x" + @buf[1].to_s + "," + @buf[2].to_s
         end
         if !rows.join["Изготовлены по (ТУ, ГОСТ)"].nil?
-          @gost = rows.compact[1]
-          @typepipe = rows.compact[3]
-          @strengthclass = rows.compact[5]
+          $gost = rows.compact[1]
+          $typepipe = rows.compact[3]
+          $strengthclass = rows.compact[5]
         end
         if !rows.join["Изоляционное покрытие по ТУ"].nil?
-          @ty = rows.compact[1]
-          @manufacture = rows.compact[3]
+          $ty = rows.compact[1]
+          $manufacture = rows.compact[3]
         end
         # какбы бля исключения строки нумерации столбцов из поиска
         if !rows.join["234"].nil?
           @numbering = index_row
+          @start_result = @numbering + 1
+        end
+        #для определения интервала между пунктами
+        if !rows.join["Примечание:"].nil?
+          @inter = (index_row - @numbering)/4
+          @inter_def = @inter/4
         end
         # можно выше поставить, а можно так оставить
         rows.each_with_index do |cells, index_cell|
           if !cells.to_s["(входного контроля труб)"].nil?
-            @named = "(входного контроля труб)"
+            $named = "(входного контроля труб)"
           end
-          if !cells.to_s["№ п/п "].nil?
+          if !cells.to_s["№ п/п"].nil?
             $coll[1] = index_cell
           end
-          if !cells.to_s["№ трубы/ партии"].nil?
+          if !cells.to_s["трубы/"].nil? and !cells.to_s["парти"].nil?
             $coll[2] = index_cell
           end
           if !cells.to_s["№ сертиф."].nil?
@@ -75,7 +87,7 @@ class LoadcertificsController < InheritedResources::Base
           if !cells.to_s["Овальность, мм"].nil?
             $coll[7] = index_cell
           end
-          if !cells.to_s["Длина, м"].nil?
+          if cells.to_s == "Длина, м"
             $coll[8] = index_cell
           end
           if !cells.to_s["Толщина стенки, мм"].nil?
@@ -102,31 +114,72 @@ class LoadcertificsController < InheritedResources::Base
           if !cells.to_s["Ост. толщина, мм"].nil?
             $coll[16] = index_cell
           end
-          if !cells.to_s["Ост. маг.инд.мТл"].nil?
+          if !cells.to_s["Ост. маг.инд.мТл"].nil?  or !cells.to_s["Ост. Маг.инд.мТс"].nil?
             $coll[17] = index_cell
           end
           if !cells.to_s["Отметка о  годности."].nil?
             $coll[18] = index_cell
           end
-          if index_cell == $coll[1] and index_row != @numbering
-            if !cells.to_s["1"].nil?
-              $row_result[0] = index_row
-            end
-            if !cells.to_s["2"].nil?
+          # некрасиво конечно, но на поа пойдёт
+          if index_cell == $coll[1] and index_row != @numbering #(cells.class == Integer or cells.class == Float )
+            if !cells.to_s["1"].nil? and ( cells.to_s.length <= 4 )
               $row_result[1] = index_row
             end
-            if !cells.to_s["3"].nil?
+            if !cells.to_s["2"].nil? and ( cells.to_s.length <= 4 )
               $row_result[2] = index_row
             end
-            if !cells.to_s["4"].nil?
+            if !cells.to_s["3"].nil? and ( cells.to_s.length <= 4 )
               $row_result[3] = index_row
             end
+            if !cells.to_s["4"].nil? and ( cells.to_s.length <= 4 )
+              $row_result[4] = index_row
+            end
+            #@call = 3
           end
         end
 
       end
     end
-    @call = $row_result
+    $subitem = []
+    #$subitem = [[" " ],[" "],[" "],[" "] ]
+    j=0
+    begin
+      $subitem[j] = []
+      #$subitem[j][0] = findcell(12+j*12,0).to_i
+      $subitem[j][1] = findcell(@start_result + j * @inter, $coll[2]).split('/')[0]         #номер трубы
+      $subitem[j][2] = findcell(@start_result + j * @inter, $coll[2]).split('/')[1]          #номер партии
+      #$subitem[j][3] = findcell(20+j*12,1)                        #номер плавки
+      $subitem[j][4] = findcell(@start_result + j * @inter, $coll[3])                        #номер сертификата
+      $subitem[j][5] = findcell(@start_result + j * @inter, $coll[4])                        #дата отгрузки
+      $subitem[j][6] = findcell(@start_result + j * @inter, $coll[5])                        #дата нанисения изоляции
+      #$subitem[j][7] = findcell(15+j*12,7).to_i                        #фактический диам маркер
+      #$subitem[j][8] = findcell(21+j*12,7).to_i                        #фактический диам немаркер
+      #$subitem[j][9] = findcell(15+j*12,8)                        #овальность маркер
+      #$subitem[j][10] = findcell(21+j*12,8)                        #овальность немаркер
+      $subitem[j][11] = findcell(@start_result + j * @inter, $coll[8])                         #длинна ,м
+      $subitem[j][12] = findcell(@start_result + j * @inter, $coll[9])                         #толщина стенки   1
+      $subitem[j][13] = findcell(@start_result + j * @inter + 1 * @inter_def, $coll[9])                        #2
+      $subitem[j][14] = findcell(@start_result + j * @inter + 2 * @inter_def, $coll[9])                       #3
+      $subitem[j][15] = findcell(@start_result + j * @inter + 3 * @inter_def, $coll[9])                        #4
+      $subitem[j][16] = findcell(@start_result + j * @inter, $coll[10])                       #тип дефекта
+      $subitem[j][17] = findcell(@start_result + j * @inter, $coll[11])                         #от марк торца
+      $subitem[j][18] = findcell(@start_result + j * @inter, $coll[13])                        #длинна, мм
+      $subitem[j][19] = findcell(@start_result + j * @inter, $coll[14])                        #ширина, мм
+      $subitem[j][20] = findcell(@start_result + j * @inter, $coll[15])                        #глубина, мм
+      $subitem[j][21] = findcell(@start_result + j * @inter, $coll[16])                         #ост толщина, мм
+      $subitem[j][22] = findcell(@start_result + j * @inter, $coll[17])                        #ост маг инд МТс    1
+      $subitem[j][23] = findcell(@start_result + j * @inter + 1 * @inter_def, $coll[17])                         #2
+      $subitem[j][24] = findcell(@start_result + j * @inter + 2 * @inter_def, $coll[17])                         #3
+      $subitem[j][25] = findcell(@start_result + j * @inter + 3 * @inter_def, $coll[17])                          #4
+      $subitem[j][26] = findcell(@start_result + j * @inter, $coll[18])                         #отметка о годности
+      if $named = "(входного контроля труб)"
+        $subitem[j][27] = findcell(@start_result + j * @inter, $coll[12])
+      end
+      j+=1
+    end  while j != $row_result.compact.length
+
+    $konusi = j
+    @call = $subitem[0][11].to_s + $subitem[1][11].to_s + $subitem[2][11].to_s + $subitem[3][11].to_s
 
     #if $named.include?("(")         #определяет какой из актов ос$minвиделельствования или входа
     #  input_control
@@ -139,10 +192,7 @@ class LoadcertificsController < InheritedResources::Base
 
   #(входного контроля труб)
 
-  def findcell(row,coll)
-    @findrow = @sheet.row(row)
-    @findcell = @findrow[coll]
-  end
+
 
   def examination                        #для освидетельствования
     #$number = findcell(1,12)
@@ -158,26 +208,7 @@ class LoadcertificsController < InheritedResources::Base
     $subitem = [[" " ],[" "],[" "],[" "] ] #инициализация массива + немер подпункта
     #@subitem[0][0] = findcell(12,0).to_i
 
-    $product_rate = []
 
-    @start_product = []
-    step = 0
-    if !$sheet.nil?
-      $sheet.each_with_index do |rows, index_row|
-        rows.each_with_index do |cells, index_cell|
-          if cells.to_s == "Поставщик"
-            @contractor_1_row = index_row
-            @contractor_1_coll = index_cell + 1
-          end
-          if cells.to_s == "наиме- нование"
-            @named_coll = index_cell
-          end
-          if !cells.to_s["нетто"].nil? and !cells.to_s["Коли"].nil?
-            @amount_coll = index_cell
-          end
-        end
-      end
-    end
 
     j=0
     begin
@@ -208,6 +239,7 @@ class LoadcertificsController < InheritedResources::Base
       $subitem[j][24] = findcell(18+j*12,22)                         #3
       $subitem[j][25] = findcell(21+j*12,22)                         #4
       $subitem[j][26] = findcell(12+j*12,25)                         #отметка о годности
+
       j+=1
     end  while !(findcell(12+j*12,25).nil?)
     $konusi = j
@@ -369,7 +401,7 @@ class LoadcertificsController < InheritedResources::Base
       @piper = Pipe.new(:notation => $subitem[i][1], :data_pipe_id => DataPipe.find_by_number_product($subitem[i][2]).id, :passport_pipe_id => 1)
       @piper.save
 
-      @pm = Result.new(:certificate_id => Certificate.find_by_number($number).id, :pipe_id => @piper.id, :date_issue => $subitem[i][5], :application_isolation => $subitem[i][6], :outside_diameter => $subitem[i][7].to_s + "/" + $subitem[i][8].to_s, :roundness => $subitem[i][9].to_s + "/" + $subitem[i][10].to_s, :length_all => $subitem[i][11].to_s, :wall_tickness => $subitem[i][12].to_s + "/" + $subitem[i][13].to_s + "/" + $subitem[i][14].to_s + "/" + $subitem[i][15].to_s, :type_def => $subitem[i][16], :from_mark_butt => $subitem[i][17], :length => $subitem[i][18], :width => $subitem[i][19], :deep => $subitem[i][20], :thickness => $subitem[i][21], :magnet => $subitem[i][22].to_s + "/" + $subitem[i][23].to_s + "/" + $subitem[i][24].to_s + "/" + $subitem[i][25].to_s, :mark_date => $subitem[i][26], :from_right_seam => $subitem[i][27])
+      @pm = Result.new(:certificate_id => Certificate.find_by_number($number).id, :pipe_id => @piper.id, :date_issue => $subitem[i][5].to_date, :application_isolation => $subitem[i][6], :outside_diameter => $subitem[i][7].to_s + "/" + $subitem[i][8].to_s, :roundness => $subitem[i][9].to_s + "/" + $subitem[i][10].to_s, :length_all => $subitem[i][11].to_s, :wall_tickness => $subitem[i][12].to_s + "/" + $subitem[i][13].to_s + "/" + $subitem[i][14].to_s + "/" + $subitem[i][15].to_s, :type_def => $subitem[i][16], :from_mark_butt => $subitem[i][17], :length => $subitem[i][18], :width => $subitem[i][19], :deep => $subitem[i][20], :thickness => $subitem[i][21], :magnet => $subitem[i][22].to_s + "/" + $subitem[i][23].to_s + "/" + $subitem[i][24].to_s + "/" + $subitem[i][25].to_s, :mark_date => $subitem[i][26], :from_right_seam => $subitem[i][27])
       @pm.save
 
       end
