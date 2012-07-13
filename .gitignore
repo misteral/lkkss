@@ -5,3 +5,5 @@ tmp/
 .sass-cache/
 public/downloads
 .idea/
+public/journal.xls
+public/qwerty.xls
