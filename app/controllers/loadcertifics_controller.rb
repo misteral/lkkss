@@ -1,7 +1,7 @@
 # coding: utf-8
 
 class LoadcertificsController < InheritedResources::Base
-  before_filter :authenticate_user! #, :except => [:show, :index]
+  #before_filter :authenticate_user! #, :except => [:show, :index]
   def findcell(row,coll)
     @findrow = $sheet.row(row)
     @findcell = @findrow[coll]

@@ -58,4 +58,8 @@ class MagazinesController < InheritedResources::Base
 
   end
 
+  def new
+
+  end
+
 end
