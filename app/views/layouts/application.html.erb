@@ -37,19 +37,23 @@
 
       </ul>
 
+      <div class="nav pull-right">
+        <li><p class="navbar-text">Авторизация:</p></li>
+        <li class="divider-vertical"></li>
+        <li>
+          <% if user_signed_in? %>
+              <p class="navbar-text"> Вы вошли как - <%= current_user.email %>. <%=  link_to "выйти", destroy_user_session_path, :class => "btn btn-primary", :method => :delete%> </p>
+          <% else %>
+              <%= link_to "new", new_user_registration_path %>  <%= link_to "необходимо авторизоваться", new_user_session_path %>
+          <% end %>
+        </li>
+      </div>
+
     </div>
   </div>
 </div>
 
-<div id="user_nav">
-  <% if user_signed_in? %>
 
-      <p align="center">вы вошли как - <%= current_user.email %>.
-<%=  link_to "выйти", destroy_user_session_path, :method => :delete%></p>
-<% else %>
-<%= link_to "new", new_user_registration_path %> <p align="center"> <%= link_to "необходимо авторизоваться", new_user_session_path %></p>
-<% end %>
-</div>
 
 <div class="container">
   <%= yield %>
