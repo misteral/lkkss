@@ -1,5 +1,5 @@
 class CertificatesController < InheritedResources::Base
-  before_filter :authenticate_user! #, :except => [:show, :index]
+  #before_filter :authenticate_user! #, :except => [:show, :index]
   def cost
     #$der = $length.nil? ? "123456" : $length.length
     $length = []

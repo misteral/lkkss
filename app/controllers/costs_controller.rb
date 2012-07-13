@@ -1,6 +1,6 @@
 # coding: utf-8
 class CostsController < InheritedResources::Base
-  before_filter :authenticate_user! #, :except => [:show, :index]
+  #before_filter :authenticate_user! #, :except => [:show, :index]
   # POST /xls
   # POST /xls.json
   def create
