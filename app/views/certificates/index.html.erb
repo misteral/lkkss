@@ -5,7 +5,7 @@
    <div class="field">
        <%= s.label :search, t("введите ключевой слово для поиска") %>
        <%= s.text_field :search %> </p>
-   <div/>
+   </div>
    <table><tr>
    <div class="field">
         <td width="20"><%= s.label "произвести фильтрацию по"%></td>
@@ -27,16 +27,14 @@
     <td width="90%"></td>
 </tr>
 </table>
-<h3>список возможных актов</h3>
-<table>
+<h3>Cписок</h3>
+<table class="table table-bordered">
   <tr>
-    <th>дата проведения контроля</th>
-    <th>название</th>
-    <th>номер</th>
-    <th>ремонт</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Дата проведения контроля</th>
+    <th>Название</th>
+    <th>Номер</th>
+    <th>Ремонт</th>
+    <th>Действия</th>
   </tr>
 
 <% @certificates.each do |certificate| %>
@@ -45,9 +43,11 @@
     <td><%= certificate.name %></td>
     <td><%= certificate.number %></td>
     <td><%= certificate.cost %></td>
-    <td><%= link_to 'просмотреть', certificate %></td>
-    <td><%= link_to 'изменить', edit_certificate_path(certificate) %></td>
-    <td><%= link_to 'удалить', certificate, confirm: 'Are you sure?', method: :delete %></td>
+    <td>
+    <%= link_to 'просмотреть', certificate, :class => "btn btn-mini btn-primary" %>
+    <%= link_to 'изменить', edit_certificate_path(certificate), :class => "btn btn-mini btn-primary" %>
+    <%= link_to 'удалить', certificate, confirm: 'Are you sure?', method: :delete, :class => "btn btn-mini btn-danger" %>
+    </td>
   </tr>
 <% end %>
 </table>
