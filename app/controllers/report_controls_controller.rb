@@ -13,9 +13,9 @@ class ReportControlsController < InheritedResources::Base
     #sheet[5,5]="Произвольное втыкание"
     Certificate.find_all_by_name("(входного контроля труб)").each do |cer|
       if SizesPipe.find(cer.sizes_pipe_id).diameter_trunk.to_i == 1420 #or cer.date_issue.month == $posti.date_start.month
-        @sheet = book.worksheet 6
+        @sheet = book.worksheet 0
         Result.find_all_by_certificate_id(cer.id).each do |res|
-          $cuk = 12345
+          #$cuk = 12345
           @row = @sheet.row(i)
           @row[0] = i
           @row[1] = cer.number + " /" + Pipe.find(res.pipe_id).notation + " /" + DataPipe.find(Pipe.find(res.pipe_id).data_pipe).number_product
