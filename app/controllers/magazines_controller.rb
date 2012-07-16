@@ -54,12 +54,4 @@ class MagazinesController < InheritedResources::Base
     redirect_to :action => 'show', :controller => 'magazines'
   end
 
-  def show
-
-  end
-
-  def new
-
-  end
-
 end

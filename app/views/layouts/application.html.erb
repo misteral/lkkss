@@ -62,7 +62,7 @@
           <% if user_signed_in? %>
               <p class="navbar-text"> Вы вошли как - <%= current_user.email %>. <%=  link_to "выйти", destroy_user_session_path, :class => "btn btn-primary", :method => :delete%> </p>
           <% else %>
-              <!--<%= link_to "new", new_user_registration_path %>  <%= link_to "необходимо авторизоваться", new_user_session_path %>-->
+              <%= link_to "new", new_user_registration_path %>  <%= link_to "необходимо авторизоваться", new_user_session_path %>
           <% end %>
         </li>
       </div>

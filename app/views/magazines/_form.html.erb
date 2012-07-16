@@ -1,8 +1,8 @@
 <%= simple_form_for(@magazine) do |f| %>
   <%= f.error_notification %>
-
+    укажите дату начала ведения журнала
   <div class="form-inputs">
-    <%= f.input :start, :label => "укажите дату начала ведения журнала" %>
+   <%= f.date_select :start, :name => "укажите дату начала ведения журнала" %>
   </div>
 
   <div class="form-actions">
