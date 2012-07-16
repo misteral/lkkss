@@ -1,8 +1,8 @@
-<h1>Listing ties</h1>
+<h1>Справочник ТУ</h1>
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>Наименование</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,13 +11,13 @@
 <% @ties.each do |ty| %>
   <tr>
     <td><%= ty.name %></td>
-    <td><%= link_to 'Show', ty %></td>
-    <td><%= link_to 'Edit', edit_ty_path(ty) %></td>
-    <td><%= link_to 'Destroy', ty, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'просмотреть', ty %></td>
+    <td><%= link_to 'изменить', edit_ty_path(ty) %></td>
+    <td><%= link_to 'удалить', ty, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Ty', new_ty_path %>
+<%= link_to 'добавить ТУ', new_ty_path %>
