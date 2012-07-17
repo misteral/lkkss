@@ -1,25 +1,25 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Name:</b>
+  <b>название:</b>
   <%= @instrumentation.name %>
 </p>
 
 <p>
-  <b>Mark:</b>
+  <b>марка:</b>
   <%= @instrumentation.mark %>
 </p>
 
 <p>
-  <b>Date verification:</b>
+  <b>дата поверки:</b>
   <%= @instrumentation.date_verification %>
 </p>
 
 <p>
-  <b>Certificate:</b>
+  <b>сертификат:</b>
   <%= @instrumentation.certificate %>
 </p>
 
 
-<%= link_to 'Edit', edit_instrumentation_path(@instrumentation) %> |
-<%= link_to 'Back', instrumentations_path %>
+<%= link_to 'изменить', edit_instrumentation_path(@instrumentation) %> |
+<%= link_to 'назад', instrumentations_path %>

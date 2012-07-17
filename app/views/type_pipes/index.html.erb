@@ -1,8 +1,8 @@
-<h1>Listing type_pipes</h1>
+<h1>типы трубной продукции</h1>
 
 <table>
   <tr>
-    <th>Name</th>
+    <th>наименование</th>
     <th></th>
     <th></th>
     <th></th>
@@ -11,13 +11,13 @@
 <% @type_pipes.each do |type_pipe| %>
   <tr>
     <td><%= type_pipe.name %></td>
-    <td><%= link_to 'Show', type_pipe %></td>
-    <td><%= link_to 'Edit', edit_type_pipe_path(type_pipe) %></td>
-    <td><%= link_to 'Destroy', type_pipe, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'просмотреть', type_pipe %></td>
+    <td><%= link_to 'изменить', edit_type_pipe_path(type_pipe) %></td>
+    <td><%= link_to 'удалить', type_pipe, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Type pipe', new_type_pipe_path %>
+<%= link_to 'добавить', new_type_pipe_path %>

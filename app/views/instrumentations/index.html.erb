@@ -1,11 +1,10 @@
-<h1>Listing instrumentations</h1>
+<h1>проборное обеспечение</h1>
 
 <table>
   <tr>
-    <th>Name</th>
-    <th>Mark</th>
-    <th>Date verification</th>
-    <th>Certificate</th>
+    <th>название</th>
+    <th>марка</th>
+    <th>дата поверки</th>
     <th></th>
     <th></th>
     <th></th>
@@ -16,14 +15,13 @@
     <td><%= instrumentation.name %></td>
     <td><%= instrumentation.mark %></td>
     <td><%= instrumentation.date_verification %></td>
-    <td><%= instrumentation.certificate %></td>
-    <td><%= link_to 'Show', instrumentation %></td>
-    <td><%= link_to 'Edit', edit_instrumentation_path(instrumentation) %></td>
-    <td><%= link_to 'Destroy', instrumentation, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'просмотреть', instrumentation %></td>
+    <td><%= link_to 'изменить', edit_instrumentation_path(instrumentation) %></td>
+    <td><%= link_to 'удалить', instrumentation, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Instrumentation', new_instrumentation_path %>
+<%= link_to 'добавить', new_instrumentation_path %>

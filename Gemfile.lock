@@ -68,6 +68,10 @@ GEM
     fastercsv (1.5.5)
     formtastic (2.1.1)
       actionpack (~> 3.0)
+    globalize3 (0.2.0)
+      activemodel (>= 3.0.0)
+      activerecord (>= 3.0.0)
+      paper_trail (~> 2)
     has_scope (0.5.1)
     hike (1.2.1)
     i18n (0.6.0)
@@ -116,6 +120,9 @@ GEM
     nokogiri (1.5.5)
     ntlm-http (0.1.1)
     orm_adapter (0.0.7)
+    paper_trail (2.6.3)
+      activerecord (~> 3.0)
+      railties (~> 3.0)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -197,6 +204,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 3.2.1)
   devise (~> 1.5.3)
+  globalize3
   i18n_generators
   jquery-rails
   meta_search

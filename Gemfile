@@ -17,6 +17,7 @@ gem 'spreadsheet'
 gem 'i18n_generators'
 gem 'russian', '~> 0.6.0'
 
+gem 'globalize3'
 
 gem 'twitter-bootstrap-rails'
 gem 'simple_form'

@@ -1,29 +1,29 @@
-<h1>Listing installation_sites</h1>
+<h1>места установки</h1>
 
 <table>
   <tr>
-    <th>Object</th>
-    <th>Data</th>
-    <th>Joint</th>
+    <th>Объект</th>
+    <th>дата</th>
+
 
     <th></th>
     <th></th>
-    <th></th>
+
   </tr>
 
 <% @installation_sites.each do |installation_site| %>
   <tr>
     <td><%= installation_site.object %></td>
     <td><%= installation_site.data %></td>
-    <td><%= installation_site.joint %></td>
 
-    <td><%= link_to 'Show', installation_site %></td>
-    <td><%= link_to 'Edit', edit_installation_site_path(installation_site) %></td>
-    <td><%= link_to 'Destroy', installation_site, confirm: 'Are you sure?', method: :delete %></td>
+
+    <td><%= link_to 'просмотреть', installation_site %></td>
+    <td><%= link_to 'изменить', edit_installation_site_path(installation_site) %></td>
+    <td><%= link_to 'удалить', installation_site, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Installation site', new_installation_site_path %>
+<%= link_to 'добавить', new_installation_site_path %>
