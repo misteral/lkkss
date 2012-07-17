@@ -19,8 +19,8 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.integer  "author_id"
     t.string   "author_type"
     t.text     "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "namespace"
   end
 
@@ -39,8 +39,8 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
@@ -54,8 +54,8 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.integer  "zavod_id"
     t.integer  "tipdef_id"
     t.integer  "ntrub_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "certificates", :force => true do |t|
@@ -70,8 +70,8 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.integer  "represent_trans_id"
     t.integer  "delegate_id"
     t.integer  "support_document_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "name"
     t.string   "number"
     t.integer  "type_pipe_id"
@@ -82,33 +82,33 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
   create_table "conclusions", :force => true do |t|
     t.string   "output"
     t.integer  "document_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "cost_inputs", :force => true do |t|
     t.integer  "hour"
     t.integer  "material"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "cost_menus", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "costs", :force => true do |t|
     t.datetime "date_start"
     t.datetime "date_end"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "data_pipes", :force => true do |t|
     t.integer  "amount"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.string   "certific"
     t.string   "number_product"
   end
@@ -124,36 +124,36 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.integer  "certificate_competence"
     t.string   "type_nk"
     t.string   "level_nk"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",             :null => false
+    t.datetime "updated_at",             :null => false
   end
 
   create_table "documents", :force => true do |t|
     t.string   "name"
     t.string   "notation"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "downloads", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "link"
   end
 
   create_table "gosts", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "installation_sites", :force => true do |t|
     t.string   "object"
     t.datetime "data"
     t.string   "joint"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "instrumentations", :force => true do |t|
@@ -161,42 +161,42 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.string   "mark"
     t.datetime "date_verification"
     t.integer  "certificate"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "konstrs", :force => true do |t|
     t.string   "name"
     t.string   "shot_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "loadcertifics", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "certific"
   end
 
   create_table "magazines", :force => true do |t|
     t.datetime "start"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "manufacturs", :force => true do |t|
     t.string   "name"
     t.string   "address"
     t.string   "phone"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "menu_reports", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "models", :force => true do |t|
@@ -210,8 +210,8 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
   end
 
   add_index "models", ["email"], :name => "index_models_on_email", :unique => true
@@ -220,35 +220,35 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
   create_table "ntrubs", :force => true do |t|
     t.string   "name"
     t.string   "shot_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "passport_pipes", :force => true do |t|
     t.integer  "passport_id"
     t.integer  "pipe_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "passports", :force => true do |t|
     t.string   "link"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "pipes", :force => true do |t|
     t.string   "notation"
     t.integer  "passport_pipe_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
     t.integer  "data_pipe_id"
   end
 
   create_table "report_controls", :force => true do |t|
     t.datetime "date_start"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "represent_hosts", :force => true do |t|
@@ -257,8 +257,8 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.string   "middle_name"
     t.string   "job"
     t.string   "organization"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "represent_trans", :force => true do |t|
@@ -267,8 +267,8 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.string   "middle_name"
     t.string   "job"
     t.string   "organization"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "results", :force => true do |t|
@@ -279,8 +279,8 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.string   "isolation"
     t.string   "stamp_valid"
     t.integer  "mass_init"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",            :null => false
+    t.datetime "updated_at",            :null => false
     t.string   "type_def"
     t.integer  "from_mark_butt"
     t.integer  "length"
@@ -310,47 +310,47 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.string   "climatic"
     t.string   "diameter_bore"
     t.integer  "document_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "support_documents", :force => true do |t|
     t.string   "name"
     t.string   "name_product"
     t.datetime "date_issue"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "terras", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "ties", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "tipdefs", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "type_pipe_installation_sites", :force => true do |t|
     t.integer  "type_pipe_id"
     t.integer  "installation_site_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
   end
 
   create_table "type_pipes", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -364,8 +364,8 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
@@ -374,15 +374,15 @@ ActiveRecord::Schema.define(:version => 20120712182700) do
   create_table "xls", :force => true do |t|
     t.string   "name"
     t.integer  "number"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "zavods", :force => true do |t|
     t.string   "name"
     t.string   "shot_name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
