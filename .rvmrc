@@ -1,1 +1,2 @@
-rvm use @lkkss
+rvm use 1.9.3-p125-perf@lkkss
+

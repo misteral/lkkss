@@ -2,7 +2,11 @@
 class MagazinesController < InheritedResources::Base
   def create
     $post = Magazine.new(params[:magazine])
-    @spread = Spreadsheet.open 'public/download/book.xls'
+    @spread = Spreadsheet.open 'public/download/journal.xls'
+
+    @sheet = @spread.worksheet 0   #выбираем лист   p.s. счет с нуля
+    @sheet[33,13] = $post.start.to_date.to_s
+
     @sheet = @spread.worksheet 1   #выбираем лист   p.s. счет с нуля
     i = 1
     j = 1
@@ -25,6 +29,7 @@ class MagazinesController < InheritedResources::Base
         j+=1
       end
     end
+
     @sheet = @spread.worksheet 2   #выбираем лист   p.s. счет с нуля
     i = 1
     j = 1
@@ -46,12 +51,13 @@ class MagazinesController < InheritedResources::Base
         j+=1
       end
     end
-    @sheet = @spread.worksheet 0
-    @run = @sheet.row(34)
-    @run[15] = $post.start.to_date.to_s
 
     @spread.write 'public/journal.xls'
     redirect_to :action => 'show', :controller => 'magazines'
+  end
+
+  def show
+
   end
 
 end

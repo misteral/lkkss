@@ -1,5 +1,8 @@
 Lkksswin::Application.routes.draw do
 
+  get "report_gazcontrols/show"
+  resources :report_gazcontrols
+
   get "report_controls/show"
   resources :report_controls
 

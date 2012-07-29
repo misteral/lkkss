@@ -1,5 +1,8 @@
 <p id="notice"><%= notice %></p>
-<%  @call %>
+<%=  @call %>
+<% $sheet.each_with_index do |rows, index_row| %>
+   <%= rows.compact  %><br>
+<% end %>
 
 <% if !$named = "(входного контроля труб)" %>
 <table BORDER=2  CELLPADDING=5>

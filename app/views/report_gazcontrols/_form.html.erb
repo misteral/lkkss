@@ -1,0 +1,9 @@
+<%= simple_form_for(@report_gazcontrol) do |f| %>
+  <%= f.error_notification %>
+
+    укажите месяц из необходимого квартала и год<br> <%= f.date_select("date_start", :discard_day => true )%>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Сформировать" %>
+  </div>
+<% end %>

@@ -52,7 +52,7 @@ class LoadcertificsController < InheritedResources::Base
           $manufacture = rows.compact[3]
         end
         # какбы бля исключения строки нумерации столбцов из поиска
-        if !rows.join["234"].nil?
+        if !rows.join["14"].nil? and !rows.join["15"].nil? and !rows.join["16"].nil?
           @numbering = index_row
           @start_result = @numbering + 1
         end
@@ -65,6 +65,7 @@ class LoadcertificsController < InheritedResources::Base
         rows.each_with_index do |cells, index_cell|
           if !cells.to_s["(входного контроля труб)"].nil?
             $named = "(входного контроля труб)"
+            @call = 123
           end
           if !cells.to_s["№ п/п"].nil?
             $coll[1] = index_cell
@@ -141,11 +142,10 @@ class LoadcertificsController < InheritedResources::Base
       end
     end
     $subitem = []
-    #$subitem = [[" " ],[" "],[" "],[" "] ]
     j=0
     begin
       $subitem[j] = []
-      #$subitem[j][0] = findcell(12+j*12,0).to_i
+      $subitem[j][0] = j
       $subitem[j][1] = findcell(@start_result + j * @inter, $coll[2]).split('/')[0]         #номер трубы
       $subitem[j][2] = findcell(@start_result + j * @inter, $coll[2]).split('/')[1]          #номер партии
       #$subitem[j][3] = findcell(20+j*12,1)                        #номер плавки
@@ -172,15 +172,17 @@ class LoadcertificsController < InheritedResources::Base
       $subitem[j][24] = findcell(@start_result + j * @inter + 2 * @inter_def, $coll[17])                         #3
       $subitem[j][25] = findcell(@start_result + j * @inter + 3 * @inter_def, $coll[17])                          #4
       $subitem[j][26] = findcell(@start_result + j * @inter, $coll[18])                         #отметка о годности
-      if $named = "(входного контроля труб)"
+      if $named == "(входного контроля труб)"
         $subitem[j][27] = findcell(@start_result + j * @inter, $coll[12])
       end
       j+=1
     end  while j != $row_result.compact.length
-
+    $subitem[1] = []
+    $subitem[2] = []
+    $subitem[3] = []
     $konusi = j
-    @call = $subitem[0][11].to_s + $subitem[1][11].to_s + $subitem[2][11].to_s + $subitem[3][11].to_s
-
+    #@call = $subitem[0][0].to_s + $subitem[1][0].to_s # + $subitem[2][11].to_s + $subitem[3][11].to_s
+    #@call = j
     #if $named.include?("(")         #определяет какой из актов ос$minвиделельствования или входа
     #  input_control
     #else

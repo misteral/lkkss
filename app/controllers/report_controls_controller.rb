@@ -16,6 +16,7 @@ class ReportControlsController < InheritedResources::Base
     $book.write file_after
     redirect_to  :action => 'show', :controller => 'report_controls'
   end
+
   def show
     #$cuka = $cuk
   end
