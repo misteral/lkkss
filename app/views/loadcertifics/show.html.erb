@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <%=  @call %>
 <% $sheet.each_with_index do |rows, index_row| %>
-   <%= rows.compact  %><br>
+   <% rows.join  %><!--<br>-->
 <% end %>
 
 <% if !$named = "(входного контроля труб)" %>
@@ -64,7 +64,7 @@
         <td ><p align="center"><%= @i %></p></td>
     <% end %>
   </tr>
-  <% for i in 0..3 %>
+  <% for i in 0..$row_result.compact.length - 1 %>
   <tr>
     <td width="2%"><p align="center"><%=  $subitem[i][0] %></p></td>
     <td width="7%"><p align="center"><%=  $subitem[i][1]%>/<br> <%= $subitem[i][2]%>/<br><%= $subitem[i][3]%></p></td>
@@ -174,7 +174,7 @@
             <td ><p align="center"><%= @i %></p></td>
         <% end %>
       </tr>
-      <% for i in 0..3 %>
+      <% for i in 0..$row_result.compact.length - 1 %>
 
           <tr>
             <td width="2%"><p align="center"><%=  $subitem[i][0] %></p></td>

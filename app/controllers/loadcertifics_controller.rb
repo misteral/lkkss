@@ -52,7 +52,7 @@ class LoadcertificsController < InheritedResources::Base
           $manufacture = rows.compact[3]
         end
         # какбы бля исключения строки нумерации столбцов из поиска
-        if !rows.join["14"].nil? and !rows.join["15"].nil? and !rows.join["16"].nil?
+        if !rows.join["14"].nil? and !rows.join["15"].nil? and !rows.join["16"].nil? and !rows.join["17"].nil? and !rows.join["18"].nil?
           @numbering = index_row
           @start_result = @numbering + 1
         end
@@ -65,12 +65,11 @@ class LoadcertificsController < InheritedResources::Base
         rows.each_with_index do |cells, index_cell|
           if !cells.to_s["(входного контроля труб)"].nil?
             $named = "(входного контроля труб)"
-            @call = 123
           end
           if !cells.to_s["№ п/п"].nil?
             $coll[1] = index_cell
           end
-          if !cells.to_s["трубы/"].nil? and !cells.to_s["парти"].nil?
+          if !cells.to_s["труб"].nil? and !cells.to_s["парти"].nil?
             $coll[2] = index_cell
           end
           if !cells.to_s["№ сертиф."].nil?
@@ -145,17 +144,17 @@ class LoadcertificsController < InheritedResources::Base
     j=0
     begin
       $subitem[j] = []
-      $subitem[j][0] = j
+      $subitem[j][0] = j + 1
       $subitem[j][1] = findcell(@start_result + j * @inter, $coll[2]).split('/')[0]         #номер трубы
       $subitem[j][2] = findcell(@start_result + j * @inter, $coll[2]).split('/')[1]          #номер партии
       #$subitem[j][3] = findcell(20+j*12,1)                        #номер плавки
       $subitem[j][4] = findcell(@start_result + j * @inter, $coll[3])                        #номер сертификата
       $subitem[j][5] = findcell(@start_result + j * @inter, $coll[4])                        #дата отгрузки
       $subitem[j][6] = findcell(@start_result + j * @inter, $coll[5])                        #дата нанисения изоляции
-      #$subitem[j][7] = findcell(15+j*12,7).to_i                        #фактический диам маркер
-      #$subitem[j][8] = findcell(21+j*12,7).to_i                        #фактический диам немаркер
-      #$subitem[j][9] = findcell(15+j*12,8)                        #овальность маркер
-      #$subitem[j][10] = findcell(21+j*12,8)                        #овальность немаркер
+      $subitem[j][7] = findcell(@start_result + j * @inter + 1 * @inter_def, $coll[6]).to_i                        #фактический диам маркер
+      $subitem[j][8] = findcell(@start_result + j * @inter + 3 * @inter_def, $coll[6]).to_i                         #фактический диам немаркер
+      $subitem[j][9] = findcell(@start_result + j * @inter + 1 * @inter_def, $coll[7])                        #овальность маркер
+      $subitem[j][10] = findcell(@start_result + j * @inter + 3 * @inter_def, $coll[7])                      #овальность немаркер
       $subitem[j][11] = findcell(@start_result + j * @inter, $coll[8])                         #длинна ,м
       $subitem[j][12] = findcell(@start_result + j * @inter, $coll[9])                         #толщина стенки   1
       $subitem[j][13] = findcell(@start_result + j * @inter + 1 * @inter_def, $coll[9])                        #2
@@ -177,12 +176,11 @@ class LoadcertificsController < InheritedResources::Base
       end
       j+=1
     end  while j != $row_result.compact.length
-    $subitem[1] = []
-    $subitem[2] = []
-    $subitem[3] = []
+
     $konusi = j
     #@call = $subitem[0][0].to_s + $subitem[1][0].to_s # + $subitem[2][11].to_s + $subitem[3][11].to_s
-    #@call = j
+    #@call = findcell(@start_result + j * @inter, $coll[2])
+    @call = $row_result.compact.length
     #if $named.include?("(")         #определяет какой из актов ос$minвиделельствования или входа
     #  input_control
     #else
